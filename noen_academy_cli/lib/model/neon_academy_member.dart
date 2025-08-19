@@ -13,6 +13,7 @@ final class NeonAcademyMember {
   final int age;
   final ContactInformation contactInformation;
 
+  /// Yeni eklenen property: motivationLevel
   int? motivationLevel;
 
   NeonAcademyMember({
@@ -24,9 +25,10 @@ final class NeonAcademyMember {
     required this.homeTown,
     required this.age,
     required this.contactInformation,
-    this.motivationLevel,
+    this.motivationLevel, // opsiyonel başlatma
   });
 
+  /// increaseMotivation fonksiyonu
   void increaseMotivation(int value) {
     if (motivationLevel == null) {
       motivationLevel = 1;
@@ -35,35 +37,39 @@ final class NeonAcademyMember {
     }
   }
 
+  /// guard let benzeri fonksiyon → Dart'ta null check + early return
   void printMotivationMessage() {
     final level = motivationLevel;
     if (level == null) {
-      print("Bu üyenin motivasyon seviyesi belirlenmedi");
+      print("This member has no motivation level set");
       return;
     }
 
     if (level > 5) {
-      print("Bu üye oldukça motive olmuş durumda");
+      print("This member is highly motivated");
     } else {
-      print("Bu üyenin motivasyon seviyesi: $level");
+      print("This member has motivation level: $level");
     }
   }
 
+  /// Motivasyon durumunu String olarak döndürme
   String motivationStatus() {
     final level = motivationLevel;
     if (level == null || level == 0) {
-      return "Hiç motive değil.";
+      return "not motivated at all";
     } else if (level > 5) {
-      return "Aşırı motive.";
+      return "highly motivated";
     } else {
-      return "Motive.";
+      return "moderately motivated";
     }
   }
 
+  /// Nil-coalescing benzeri → Dart'ta `??` kullanıyoruz
   int getMotivationOrZero() {
     return motivationLevel ?? 0;
   }
 
+  /// if let benzeri → Dart'ta null check
   bool hasReachedMotivation(int target) {
     final level = motivationLevel;
     if (level != null) {
