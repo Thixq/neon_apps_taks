@@ -1,33 +1,48 @@
 # Task
 
-Welcome to the Neon Academy, where we unlock the potential of brilliant minds and turn them into world-class Flutter developers. As a member of our elite team of Academy members, you have been chosen to participate in a special challenge that will test your skills and determine if you have what it takes to become a full-fledged member of the academy.
+## Neon Academy CLI – Özet
 
-The challenge is to create a model for our academy members, called the NeonAcademyMember. This model will be used to keep track of all the members in our academy, and it must include the following properties:
+Bu proje, Dart dilinin temellerini öğrenmek ve pekiştirmek amacıyla hazırlanmış bir komut satırı uygulamasıdır.
+Amaç, Dart’ın temel kavramlarını (class, enum, fonksiyonlar, listeler, switch-case, kullanıcıdan input alma vb.) pratik bir senaryoda kullanmaktır.
 
-- fullName: The member's full name.
+#### 🚀 Özellikler
 
-- title: The member's title or position within the academy.
+Üye oluşturma → Kullanıcıdan alınan bilgilerle NeonAcademyMember nesnesi oluşturur.
 
-- horoscope: The member's astrological sign.
+Üyeleri listeleme → Sistemde kayıtlı tüm üyeleri ekrana basar.
 
-- memberLevel: The member's level of membership within the academy.
+Üye silme → Index, ad veya takıma göre silme seçenekleri sunar.
 
-- homeTown: The member's hometown.
+Üyeleri sıralama → Ad, yaş, title, team, burç ve seviye gibi kriterlere göre artan/azalan sıralama yapılabilir.
 
-- age: The member's age.
+Üyeleri filtreleme → Belirli özelliklere göre üyeleri filtreler.
 
-- contactInformation: An instance of a separate class, called ContactInformation, which will include the following properties
+Kullanıcıdan input alma → prompts.dart içindeki yardımcı fonksiyonlarla kullanıcıdan string, int veya enum seçimi alınır.
 
+#### 🛠️ Kullanılan Temel Dart Özellikleri
 
-    - phoneNumber: The member's phone number.
+Class & Nesne Tabanlı Programlama → NeonAcademyMember modeli
 
+Enum → Horoscope, MemberLevel, Team
 
-    - email: The member's email address.
+Listeler ve Koleksiyon İşlemleri → ekleme, silme, sıralama, filtreleme
 
-You may be wondering why the horoscope property is included in the model. In the Neon Academy, we believe that everyone is unique and special in their own way, just like the stars in the sky. And just as the stars align to create a unique constellation, we believe that each member's unique qualities align to create a powerful team.
+Fonksiyonlar → Tekrar kullanılabilir helper fonksiyonlar (prompt, promptInt, promptEnum)
 
-To complete this challenge, you will need to create an instance of the NeonAcademyMember class for all members of your team, and add them to an array. Additionally, you will need to create an instance of the ContactInformation class for each member and link it to their corresponding NeonAcademyMember instance.
+Switch-case yapısı → Menü seçeneklerini yönetme
 
-This challenge is not only a test of your skills but also a test of your creativity. The best solution will be used to keep track of all members in our academy, and will be admired and studied by future generations of developers. So, be creative and make it epic!
+Döngüler → Kullanıcı çıkış yapana kadar uygulamanın çalışması
 
-Please submit your solution, including a playground file containing your code, to the item. Good luck and may the stars align in your favor!
+#### 🎯 Kazanımlar
+
+Bu task, Dart’ın:
+
+Nesne yönelimli yaklaşımı,
+
+Kullanıcıdan veri alma ve işleme,
+
+Koleksiyonlar üzerinde işlem yapma,
+
+CLI uygulaması mantığı
+
+gibi temel kavramlarını pekiştirmek için hazırlandı.
