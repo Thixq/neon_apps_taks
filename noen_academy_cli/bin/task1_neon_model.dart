@@ -69,7 +69,7 @@ void main() {
         if (index < 0 || index >= mainList.length) {
           print("Geçersiz seçim!");
         } else {
-          showMemberMenu(mainList[index - 1]); // ✅ yeni dosyadan çağrılıyor
+          showMemberMenu(mainList[index - 1]);
         }
         break;
       case '7':
