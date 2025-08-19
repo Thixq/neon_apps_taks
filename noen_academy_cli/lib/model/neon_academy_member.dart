@@ -28,7 +28,6 @@ final class NeonAcademyMember {
     this.motivationLevel, // opsiyonel başlatma
   });
 
-  /// increaseMotivation fonksiyonu
   void increaseMotivation(int value) {
     if (motivationLevel == null) {
       motivationLevel = 1;
@@ -37,7 +36,6 @@ final class NeonAcademyMember {
     }
   }
 
-  /// guard let benzeri fonksiyon → Dart'ta null check + early return
   void printMotivationMessage() {
     final level = motivationLevel;
     if (level == null) {
@@ -52,7 +50,6 @@ final class NeonAcademyMember {
     }
   }
 
-  /// Motivasyon durumunu String olarak döndürme
   String motivationStatus() {
     final level = motivationLevel;
     if (level == null || level == 0) {
@@ -64,12 +61,10 @@ final class NeonAcademyMember {
     }
   }
 
-  /// Nil-coalescing benzeri → Dart'ta `??` kullanıyoruz
   int getMotivationOrZero() {
     return motivationLevel ?? 0;
   }
 
-  /// if let benzeri → Dart'ta null check
   bool hasReachedMotivation(int target) {
     final level = motivationLevel;
     if (level != null) {
