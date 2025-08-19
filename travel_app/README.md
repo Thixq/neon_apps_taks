@@ -1,16 +1,40 @@
-# travel_app
+# 📌 Neon Academy Traveler App
 
-A new Flutter project.
+## 📖 Senaryo
 
-## Getting Started
+Jane ve John isimli genç bir çift, dünya turuna çıkmak için uzun zamandır hayal kurmaktadır. Yıllar boyunca biriktirdikleri parayla nihayet hayallerindeki yolculuğu planlamaya başlarlar. Ancak gitmek istedikleri yerleri unuttuklarını fark ederler.
 
-This project is a starting point for a Flutter application.
+Bunu çözmek için küçük bir mobil uygulama geliştirmeye karar verirler. Uygulama sayesinde gitmek istedikleri yerleri kaydedip daha sonra tekrar görüntüleyebilirler.
 
-A few resources to get you started if this is your first Flutter project:
+## 🎯 Görev
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Bu projede amaç, **Flutter’da SharedPreferences kullanarak veri kaydetme ve geri okuma** sürecini öğrenmektir.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Uygulamada şu işlemler yapılmaktadır:
+
+* Kullanıcıdan üç tip veri alınır:
+
+  * **Bool** → "Bu yere daha önce gittiniz mi?"
+  * **Int** → "Bu yeri kaç kez ziyaret ettiniz?"
+  * **String** → "Gitmek istediğiniz yerin adı nedir?"
+* Girilen veriler **SharedPreferences** içine kaydedilir.
+* Uygulama kapatılıp tekrar açıldığında veriler SharedPreferences’tan okunarak ekrana yansıtılır.
+
+## 🛠 Kullanılan Teknolojiler
+
+* **Flutter**
+* **SharedPreferences** paketi
+
+## 📱 Özellikler
+
+* Kullanıcı giriş alanları üzerinden değer girer.
+* Kaydet butonuna basıldığında veriler cihaz hafızasına yazılır.
+* Uygulama tekrar açıldığında kaydedilen bilgiler ekranda görünür.
+
+## 🎓 Kazanımlar
+
+Bu görev ile:
+
+* SharedPreferences nedir ve nasıl çalışır öğrenildi.
+* Bool, Int ve String tipinde verilerin kalıcı olarak saklanması uygulandı.
+* Flutter’da basit bir veri saklama mekanizması deneyimlendi.
