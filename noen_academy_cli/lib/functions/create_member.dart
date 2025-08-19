@@ -1,44 +1,30 @@
-import 'dart:io';
-
 import 'package:task1_neon_model/enum/horoscope.dart';
 import 'package:task1_neon_model/enum/member_level.dart';
-import 'package:task1_neon_model/neon_academy_member.dart';
+import 'package:task1_neon_model/enum/team.dart';
+import 'package:task1_neon_model/model/neon_academy_member.dart';
+import 'package:task1_neon_model/utils/prompts.dart';
 
 void createMember(List<NeonAcademyMember> members) {
-  stdout.write('Full Name: ');
-  final fullName = stdin.readLineSync() ?? '';
+  final fullName = prompt('Full Name: ');
 
-  stdout.write('Title: ');
-  final title = stdin.readLineSync() ?? '';
+  final team = promptEnum('Title: ', Team.values);
+  final title = prompt('Title: ');
 
-  stdout.write('Horoscope (e.g., aries, taurus): ');
-  final horoscopeInput = stdin.readLineSync() ?? '';
-  final horoscope = Horoscope.values.firstWhere(
-    (h) => h.name.toLowerCase() == horoscopeInput.toLowerCase(),
-    orElse: () => Horoscope.aries,
-  );
+  final horoscope = promptEnum('Horoscope: ', Horoscope.values);
 
-  stdout.write('Member Level (e.g., a1, a2, a3): ');
-  final levelInput = stdin.readLineSync() ?? '';
-  final memberLevel = MemberLevel.values.firstWhere(
-    (l) => l.name.toLowerCase() == levelInput.toLowerCase(),
-    orElse: () => MemberLevel.a1,
-  );
+  final memberLevel = promptEnum('Member Level: ', MemberLevel.values);
 
-  stdout.write('Home Town: ');
-  final homeTown = stdin.readLineSync() ?? '';
+  final homeTown = prompt('Home Town: ');
 
-  stdout.write('Age: ');
-  final age = int.tryParse(stdin.readLineSync() ?? '') ?? 0;
+  final age = promptInt('Age: ');
 
-  stdout.write('Email: ');
-  final email = stdin.readLineSync() ?? '';
+  final email = prompt('Email: ');
 
-  stdout.write('Phone Number: ');
-  final phoneNumber = stdin.readLineSync() ?? '';
+  final phoneNumber = prompt('Phone Number: ');
 
   final member = NeonAcademyMember(
     fullName: fullName,
+    team: team,
     title: title,
     horoscope: horoscope,
     memberLevel: memberLevel,

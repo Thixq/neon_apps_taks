@@ -1,8 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:task1_neon_model/enum/horoscope.dart';
 import 'package:task1_neon_model/enum/member_level.dart';
+import 'package:task1_neon_model/enum/team.dart';
 
 final class NeonAcademyMember {
   final String fullName;
+  final Team team;
   final String title;
   final Horoscope horoscope;
   final MemberLevel memberLevel;
@@ -12,6 +15,7 @@ final class NeonAcademyMember {
 
   const NeonAcademyMember({
     required this.fullName,
+    required this.team,
     required this.title,
     required this.horoscope,
     required this.memberLevel,
@@ -19,6 +23,11 @@ final class NeonAcademyMember {
     required this.age,
     required this.contactInformation,
   });
+
+  @override
+  String toString() {
+    return 'NeonAcademyMember(fullName: $fullName, team: $team, title: $title, horoscope: $horoscope, memberLevel: $memberLevel, homeTown: $homeTown, age: $age, contactInformation: $contactInformation)';
+  }
 }
 
 final class ContactInformation {
@@ -26,4 +35,8 @@ final class ContactInformation {
   final String phoneNumber;
 
   const ContactInformation({required this.email, required this.phoneNumber});
+
+  @override
+  String toString() =>
+      'ContactInformation(email: $email, phoneNumber: $phoneNumber)';
 }

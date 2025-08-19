@@ -1,15 +1,39 @@
 import 'dart:io';
+import 'package:task1_neon_model/enum/horoscope.dart';
+import 'package:task1_neon_model/enum/member_level.dart';
+import 'package:task1_neon_model/enum/team.dart';
 import 'package:task1_neon_model/functions/create_member.dart';
+import 'package:task1_neon_model/functions/delete_member.dart';
+import 'package:task1_neon_model/functions/filter_member.dart';
 import 'package:task1_neon_model/functions/list_all_members.dart';
-import 'package:task1_neon_model/neon_academy_member.dart';
+import 'package:task1_neon_model/functions/sort_members.dart';
+import 'package:task1_neon_model/model/neon_academy_member.dart';
 
 void main() {
-  final List<NeonAcademyMember> mainList = [];
+  final List<NeonAcademyMember> mainList = List.generate(
+    5,
+    (index) => NeonAcademyMember(
+      fullName: '${index + 1}',
+      title: 'Developer',
+      team: Team.android,
+      horoscope: Horoscope.aries,
+      memberLevel: MemberLevel.a1,
+      homeTown: 'İstanbul',
+      age: index + 10,
+      contactInformation: ContactInformation(
+        email: 'email',
+        phoneNumber: '$index',
+      ),
+    ),
+  );
   while (true) {
     print('\n--- Neon Academy CLI ---');
     print('1. Üye oluştur');
     print('2. Tüm üyeleri listele');
-    print('3. Çıkış');
+    print('3. Seçilen kişiyi sil');
+    print('4. Sırala');
+    print('5. Filtrele');
+    print('6. Çıkış');
     stdout.write('Seçiminiz: ');
     final choice = stdin.readLineSync();
 
@@ -21,10 +45,17 @@ void main() {
         listMembers(mainList);
         break;
       case '3':
-        print('Programdan çıkılıyor...');
+        deleteMember(mainList);
+        break;
+      case '4':
+        sortMembers(mainList);
+        break;
+      case '5':
+        filterMember(mainList);
+      case '6':
         return;
       default:
-        print('Geçersiz seçim, tekrar deneyin.');
+        print('\nGeçersiz seçim, tekrar deneyin.');
     }
   }
 }
