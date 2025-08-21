@@ -13,7 +13,10 @@ final class NeonAcademyMember {
   final int age;
   final ContactInformation contactInformation;
 
-  const NeonAcademyMember({
+  /// Yeni eklenen property: motivationLevel
+  int? motivationLevel;
+
+  NeonAcademyMember({
     required this.fullName,
     required this.team,
     required this.title,
@@ -22,11 +25,57 @@ final class NeonAcademyMember {
     required this.homeTown,
     required this.age,
     required this.contactInformation,
+    this.motivationLevel, // opsiyonel başlatma
   });
+
+  void increaseMotivation(int value) {
+    if (motivationLevel == null) {
+      motivationLevel = 1;
+    } else {
+      motivationLevel = motivationLevel! + value;
+    }
+  }
+
+  void printMotivationMessage() {
+    final level = motivationLevel;
+    if (level == null) {
+      print("This member has no motivation level set");
+      return;
+    }
+
+    if (level > 5) {
+      print("This member is highly motivated");
+    } else {
+      print("This member has motivation level: $level");
+    }
+  }
+
+  String motivationStatus() {
+    final level = motivationLevel;
+    if (level == null || level == 0) {
+      return "not motivated at all";
+    } else if (level > 5) {
+      return "highly motivated";
+    } else {
+      return "moderately motivated";
+    }
+  }
+
+  int getMotivationOrZero() {
+    return motivationLevel ?? 0;
+  }
+
+  bool hasReachedMotivation(int target) {
+    final level = motivationLevel;
+    if (level != null) {
+      return level >= target;
+    }
+    return false;
+  }
 
   @override
   String toString() {
-    return 'NeonAcademyMember(fullName: $fullName, team: $team, title: $title, horoscope: $horoscope, memberLevel: $memberLevel, homeTown: $homeTown, age: $age, contactInformation: $contactInformation)';
+    return 'NeonAcademyMember(fullName: $fullName, team: $team, title: $title, horoscope: $horoscope, memberLevel: $memberLevel, homeTown: $homeTown, age: $age, contactInformation: $contactInformation, motivationLevel: $motivationLevel)';
   }
 }
 
