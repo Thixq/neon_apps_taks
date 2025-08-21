@@ -1,16 +1,39 @@
-# fin_smart
+# 📱 FinSmart
 
-A new Flutter project.
+**FinSmart**, kişisel finans yönetimini kolaylaştırmak için tasarlanmış bir Flutter uygulamasıdır. Kullanıcıların harcamalarını, yatırımlarını ve hesap özetlerini takip edebileceği şık ve kullanıcı dostu bir arayüz sunar.
 
-## Getting Started
+Bu proje, **Flutter’ın Flexible widget’ının gücünü** göstermek amacıyla hazırlanmıştır. Uygulama, farklı ekran boyutlarına ve cihaz yönlerine otomatik uyum sağlayan **responsive bir tasarım** örneği içerir.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Özellikler
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+* Üst kısımda **logo ve karşılama mesajı**
+* Orta bölümde **hesap özetleri (hesap adı + bakiye)**
+* Alt kısımda **hızlı işlem butonları**:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  * Harcama ekle
+  * Para transferi
+* **Flexible + Row + Column** kullanımıyla **responsive tasarım**
+* Hem akıllı telefonlarda hem tabletlerde uyumlu çalışma
+
+---
+
+## 📂 Proje Yapısı
+
+```
+lib/
+ └── main.dart    # Ana uygulama dosyası
+```
+
+---
+
+## 🎯 Öğrenme Hedefi
+
+Bu proje, **Flexible widget’ını** öğrenmek isteyen geliştiriciler için örnek niteliği taşır.
+Amaç:
+
+* `Column` ve `Row` yapılarında Flexible kullanımını anlamak
+* Responsive tasarım oluşturmak
+* Basit ama işlevsel bir finans uygulaması arayüzü geliştirmek
+
