@@ -54,6 +54,7 @@ class _ControllerCardState extends State<ControllerCard> {
             children: [
               Expanded(
                 child: Slider(
+                  // ignore: deprecated_member_use
                   year2023: false,
                   divisions: 10,
                   value: process,
