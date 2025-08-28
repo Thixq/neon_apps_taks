@@ -4,10 +4,12 @@ class _Profile extends StatelessWidget {
   const _Profile({
     required this.profileOnPressed,
     required this.offterOnPressed,
+    required this.profile,
   });
 
   final VoidCallback profileOnPressed;
   final VoidCallback offterOnPressed;
+  final Profile profile;
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +20,19 @@ class _Profile extends StatelessWidget {
         children: [
           ProfileAvatar(
             onPressed: profileOnPressed,
-            imageUrl: ImageConst.profile,
+            imageUrl: profile.profileImage,
           ),
-          Text('Kaan', style: Theme.of(context).textTheme.titleMedium),
+          Text(
+            profile.fullName,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
           Expanded(child: SizedBox.expand()),
-          TextButton(onPressed: offterOnPressed, child: Text('Upgrade')),
+          TextButton(
+            onPressed: profile.subscriptionInfo.isActiveSubscription
+                ? null
+                : offterOnPressed,
+            child: Text('Upgrade'),
+          ),
         ],
       ),
     );

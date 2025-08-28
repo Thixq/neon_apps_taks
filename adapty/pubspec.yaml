@@ -10,6 +10,8 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
+  pay: ^3.2.1
+  flutter_secure_storage: ^9.2.4
 
 dev_dependencies:
   flutter_test:
@@ -21,3 +23,4 @@ flutter:
   uses-material-design: true
   assets:
   - assets/
+  - assets/payment_config/

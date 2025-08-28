@@ -18,22 +18,34 @@ class OfferBottomSheet {
               children: [
                 _buildOffter(
                   title: 'Standard',
-                  subTitle: '10₺ per month',
-                  onPressed: standard,
+                  subTitle: '10\$ per month',
+                  content: '10 notes per day',
+                  onPressed: () {
+                    standard();
+                    Navigator.pop(context);
+                  },
                 ),
                 _buildOffter(
-                  onPressed: plus,
                   title: 'Plus',
-                  subTitle: '30₺ per month',
+                  subTitle: '30\$ per month',
+                  content: '50 notes per day',
                   titleStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.bold,
                   ),
+                  onPressed: () {
+                    plus();
+                    Navigator.pop(context);
+                  },
                 ),
                 _buildOffter(
                   title: 'Ultimate',
-                  subTitle: '100₺ per month',
-                  onPressed: ultimate,
+                  subTitle: '100\$ per month',
+                  content: '100 notes per day',
+                  onPressed: () {
+                    ultimate();
+                    Navigator.pop(context);
+                  },
                 ),
               ],
             ),
@@ -46,9 +58,11 @@ class OfferBottomSheet {
   static TextButton _buildOffter({
     required String title,
     required String subTitle,
+    required String content,
     required VoidCallback onPressed,
     TextStyle? titleStyle,
     TextStyle? subTitleStyle,
+    TextStyle? contentStyle,
   }) {
     return TextButton(
       onPressed: onPressed,
@@ -57,6 +71,7 @@ class OfferBottomSheet {
         children: [
           Text(title, style: titleStyle),
           Text(subTitle, style: subTitleStyle),
+          Text(content, style: contentStyle),
         ],
       ),
     );
