@@ -27,12 +27,9 @@ class _HomeViewState extends State<HomeView> with _HomeMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final note = await NewNoteDialog.show(context);
-          if (note != null) {
-            _addNote(note);
-          }
-        },
+        onPressed: _profile.subscriptionInfo.isActiveSubscription
+            ? _addNote
+            : null,
         child: Icon(Icons.add),
       ),
       appBar: AppBar(
@@ -41,25 +38,7 @@ class _HomeViewState extends State<HomeView> with _HomeMixin {
         title: _Profile(
           profile: _profile,
           offterOnPressed: () {
-            OfferBottomSheet.show(
-              context,
-              standard: () {},
-              plus: () async {
-                final result = await _paymentService.ApplePay(
-                  items: [
-                    PaymentItem(
-                      amount: '30',
-                      label: '30\$ per month',
-                      status: PaymentItemStatus.final_price,
-                      type: PaymentItemType.item,
-                    ),
-                  ],
-                );
-                print(result);
-                _saveSubToken('6f98327f-9688-42c5-8d9f-8c4891250e5d');
-              },
-              ultimate: () {},
-            );
+            OfferBottomSheet.show(context, plus: _plus);
           },
           profileOnPressed: () {},
         ),

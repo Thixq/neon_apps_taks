@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SubscriptionLocalSyncService {
@@ -20,7 +21,7 @@ class SubscriptionLocalSyncService {
       await _localStorage.write(key: 'SubscriptionToken', value: token);
       return true;
     } catch (e) {
-      print(e);
+      debugPrint('$e');
       rethrow;
     }
   }
@@ -32,10 +33,10 @@ class SubscriptionLocalSyncService {
         return false;
       }
       // backend verification and other network checks ...
-      print(value);
+      debugPrint(value);
       return true;
     } catch (e) {
-      print(e);
+      debugPrint('$e');
       rethrow;
     }
   }

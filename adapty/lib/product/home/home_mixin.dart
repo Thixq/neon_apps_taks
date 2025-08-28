@@ -4,6 +4,22 @@ mixin _HomeMixin on State<HomeView> {
   late final PaymentService _paymentService;
   late final Profile _profile;
 
+  void _plus() async {
+    final result = await _paymentService.applePay(
+      items: [
+        PaymentItem(
+          amount: '30',
+          label: '30\$ per month',
+          status: PaymentItemStatus.final_price,
+          type: PaymentItemType.item,
+        ),
+      ],
+    );
+    if (result.isEmpty) return;
+    debugPrint('$result');
+    _saveSubToken('6f98327f-9688-42c5-8d9f-8c4891250e5d');
+  }
+
   final List<NoteModel> _mockList = List.generate(
     12,
     (index) => NoteModel(
@@ -16,10 +32,13 @@ mixin _HomeMixin on State<HomeView> {
 
   late List<NoteModel> _mainList;
 
-  void _addNote(NoteModel note) {
-    setState(() {
-      _mainList.add(note);
-    });
+  void _addNote() async {
+    final note = await NewNoteDialog.show(context);
+    if (note != null) {
+      setState(() {
+        _mainList.add(note);
+      });
+    }
   }
 
   Future<void> _paymentInit() async {
