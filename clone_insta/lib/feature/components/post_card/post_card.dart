@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs, document_ignores
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clone_insta/feature/components/profile_avatar.dart';
 import 'package:clone_insta/feature/constants/app_sizes.dart';

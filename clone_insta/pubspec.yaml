@@ -14,10 +14,18 @@ dependencies:
   # Firebase
   firebase_core: ^4.1.0
 
+  #Utils
+  kartal: ^4.2.0
+
+  #Routing
+  auto_route: ^10.1.2
+
   # UI
   cached_network_image: ^3.4.1
   # Code gen
   json_annotation: ^4.9.0
+  
+  easy_localization: ^3.0.8
 
 dev_dependencies:
   flutter_test:
@@ -26,7 +34,11 @@ dev_dependencies:
   # Code gen
   json_serializable: ^6.11.0
   build_runner: ^2.7.1
+  auto_route_generator: ^10.2.4
   
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/

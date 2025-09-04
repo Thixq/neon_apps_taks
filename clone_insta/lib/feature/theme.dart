@@ -12,6 +12,11 @@ final class NeonTheme {
     ),
   );
 
+  /// The input decoration theme for the app.
+  static InputDecorationTheme get inputDecorationTheme => InputDecorationTheme(
+    border: OutlineInputBorder(borderRadius: AppSizes.mediumBorderRadius),
+  );
+
   /// The dark theme for the app.
   static ThemeData dark() => ThemeData.dark().copyWith(
     colorScheme: ColorScheme.fromSeed(
@@ -19,11 +24,13 @@ final class NeonTheme {
       seedColor: const Color(0XFFFFF085),
     ),
     filledButtonTheme: filledButtonTheme,
+    inputDecorationTheme: inputDecorationTheme,
   );
 
   /// The light theme for the app.
   static ThemeData light() => ThemeData.light().copyWith(
     colorScheme: ColorScheme.fromSeed(seedColor: const Color(0XFFFFF085)),
     filledButtonTheme: filledButtonTheme,
+    inputDecorationTheme: inputDecorationTheme,
   );
 }
