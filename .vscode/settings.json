@@ -1,3 +1,5 @@
 {
-  "dart.flutterSdkPath": ".fvm/versions/stable"
+  "dart.flutterSdkPath": ".fvm/versions/stable",
+  "dart.sdkPath": ".fvm/versions/stable",
+  "build-runner.flutterPath": ".fvm/flutter_sdk/bin/flutter"
 }

@@ -1,0 +1,32 @@
+name: clone_insta
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.0
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # Firebase
+  firebase_core: ^4.1.0
+
+  # UI
+  cached_network_image: ^3.4.1
+  # Code gen
+  json_annotation: ^4.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^9.0.0
+  # Code gen
+  json_serializable: ^6.11.0
+  build_runner: ^2.7.1
+  
+
+flutter:
+  uses-material-design: true
