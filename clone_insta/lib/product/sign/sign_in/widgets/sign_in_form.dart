@@ -14,13 +14,14 @@ class _SignInForm extends StatelessWidget {
       child: Column(
         spacing: AppSizes.medium,
         children: [
-          TextFormField(
-            decoration: const InputDecoration(hintText: 'Email'),
+          CustomFormField(
+            hintText: 'Email',
             validator: (text) => Validator.sign.emailValidator(text),
           ),
 
-          TextFormField(
-            decoration: const InputDecoration(hintText: 'Password'),
+          CustomFormField(
+            hintText: 'Password',
+            obscureText: true,
             validator: (text) => Validator.sign.passwordValidator(text),
           ),
         ],

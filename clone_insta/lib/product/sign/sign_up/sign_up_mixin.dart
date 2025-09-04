@@ -7,7 +7,7 @@ mixin _SignUpMixin on State<SignUpView> {
     if (_formKey.currentState?.validate() ?? false) {}
   }
 
-  void _SignInGo() {
+  void _signInGo() {
     context.router.replace(const SignInRoute());
   }
 

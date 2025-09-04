@@ -14,21 +14,22 @@ class _SignUpForm extends StatelessWidget {
       child: Column(
         spacing: AppSizes.medium,
         children: [
-          TextFormField(
-            decoration: const InputDecoration(hintText: 'Nick Name'),
+          CustomFormField(
+            hintText: 'Username',
             validator: Validator.generic.isEmpty,
           ),
-          TextFormField(
-            decoration: const InputDecoration(hintText: 'Full Name'),
+          CustomFormField(
+            hintText: 'Full name',
             validator: Validator.generic.isEmpty,
           ),
-          TextFormField(
-            decoration: const InputDecoration(hintText: 'Email'),
+          CustomFormField(
+            hintText: 'Email',
             validator: Validator.sign.emailValidator,
           ),
 
-          TextFormField(
-            decoration: const InputDecoration(hintText: 'Password'),
+          CustomFormField(
+            hintText: 'Password',
+            obscureText: true,
             validator: Validator.sign.passwordValidator,
           ),
         ],

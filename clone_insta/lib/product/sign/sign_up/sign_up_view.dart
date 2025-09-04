@@ -1,5 +1,5 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:clone_insta/feature/components/custom_form_field.dart';
 import 'package:clone_insta/feature/constants/app_sizes.dart';
 import 'package:clone_insta/feature/extensions/context_theme_extension.dart';
 import 'package:clone_insta/feature/extensions/double_sized_extension.dart';
@@ -12,7 +12,7 @@ part 'widgets/sign_up_form.dart';
 
 const String _signInTitle = 'Neon Apps Social';
 const String _signUpButton = 'Sign up';
-const String _signInGo = 'Already have an account?';
+const String _signInGoView = 'Already have an account?';
 
 /// Sign up view
 @RoutePage()
@@ -54,7 +54,7 @@ class _SignUpViewState extends State<SignUpView> with _SignUpMixin {
   }
 
   TextButton _buildSignInGo() =>
-      TextButton(onPressed: _SignInGo, child: const Text(_signInGo));
+      TextButton(onPressed: _signInGo, child: const Text(_signInGoView));
 
   SizedBox _buildSignUpButton(BuildContext context) {
     return SizedBox(

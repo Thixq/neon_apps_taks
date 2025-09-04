@@ -1,5 +1,5 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:clone_insta/feature/components/custom_form_field.dart';
 import 'package:clone_insta/feature/constants/app_sizes.dart';
 import 'package:clone_insta/feature/extensions/context_theme_extension.dart';
 import 'package:clone_insta/feature/extensions/double_sized_extension.dart';
@@ -57,7 +57,7 @@ class _SignInViewState extends State<SignInView> with _SignInMixin {
 
   Widget _buildSignUpGo() {
     return TextButton(
-      onPressed: _SignUpGo,
+      onPressed: _signUpGo,
       child: const Text(_signUpButton),
     );
   }
