@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 /// A circular avatar that can be tapped.
 final class ProfileAvatar extends StatelessWidget {
   /// Creates a circular avatar that can be tapped.
-  const ProfileAvatar({super.key, this.imageUrl, this.onPressed});
+  const ProfileAvatar({
+    super.key,
+    this.imageUrl,
+    this.onPressed,
+    this.size = AppSizes.extraLarge * 2, // Default size
+  });
 
   /// The URL of the avatar image.
   final String? imageUrl;
@@ -13,23 +18,29 @@ final class ProfileAvatar extends StatelessWidget {
   /// A callback which is called when the avatar is tapped.
   final VoidCallback? onPressed;
 
+  /// The size (diameter) of the avatar.
+  final double size;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPressed,
-      child: CircleAvatar(
-        minRadius: AppSizes.medium,
-        maxRadius: AppSizes.large,
-        child: ClipOval(
+      child: SizedBox(
+        width: size,
+        height: size,
+        child: CircleAvatar(
           child: imageUrl != null && imageUrl!.isNotEmpty
-              ? CachedNetworkImage(
-                  imageUrl: imageUrl!,
-                  fit: BoxFit.cover,
-                  width: AppSizes.extraLarge * 2,
-                  height: AppSizes.extraLarge * 2,
-                  placeholder: (context, url) =>
-                      const CircularProgressIndicator.adaptive(),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+              ? ClipOval(
+                  child: CachedNetworkImage(
+                    imageUrl: imageUrl!,
+                    fit: BoxFit.cover,
+                    width: size,
+                    height: size,
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator.adaptive(),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
                 )
               : const Icon(Icons.person),
         ),

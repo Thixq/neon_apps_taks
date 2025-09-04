@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:clone_insta/feature/constant/app_constant.dart';
+import 'package:clone_insta/feature/constants/app_constant.dart';
 import 'package:clone_insta/feature/routing/app_router.gr.dart';
 import 'package:flutter/material.dart';
 
