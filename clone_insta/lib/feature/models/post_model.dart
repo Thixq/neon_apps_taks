@@ -6,7 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'post_model.g.dart';
 
 /// The model for a post.
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 final class PostModel extends BaseModel<PostModel> {
   /// Constructor
   const PostModel({
@@ -41,11 +41,9 @@ final class PostModel extends BaseModel<PostModel> {
   /// Created at of the post
   final DateTime? createdAt;
 
-  /// From json
   @override
   PostModel fromJson(Map<String, dynamic> json) => _$PostModelFromJson(json);
 
-  /// To json
   @override
-  Map<String, dynamic> toMap(PostModel model) => _$PostModelToJson(this);
+  Map<String, dynamic> toJson() => _$PostModelToJson(this);
 }

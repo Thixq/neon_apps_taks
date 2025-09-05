@@ -22,8 +22,8 @@ PostModel _$PostModelFromJson(Map<String, dynamic> json) => PostModel(
 
 Map<String, dynamic> _$PostModelToJson(PostModel instance) => <String, dynamic>{
   'id': instance.id,
-  'profile': instance.profile,
+  'profile': instance.profile?.toJson(),
   'contentImage': instance.contentImage,
-  'comment': instance.comment,
+  'comment': instance.comment?.toJson(),
   'createdAt': instance.createdAt?.toIso8601String(),
 };

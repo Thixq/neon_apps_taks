@@ -10,5 +10,5 @@ abstract class BaseModel<T> {
   T fromJson(Map<String, dynamic> json);
 
   /// You must implement this method to convert an object of type [T] to a JSON map.
-  Map<String, dynamic> toMap(T model);
+  Map<String, dynamic> toJson();
 }

@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 final class AppSizes {
   const AppSizes._();
 
+  /// 2.0
+  static const double extraSmall = 2;
+
   /// 4.0
   static const double xSmall = 4;
 

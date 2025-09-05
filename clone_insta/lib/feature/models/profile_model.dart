@@ -55,5 +55,5 @@ final class ProfileModel extends BaseModel<ProfileModel> {
       _$ProfileModelFromJson(json);
 
   @override
-  Map<String, dynamic> toMap(ProfileModel model) => _$ProfileModelToJson(this);
+  Map<String, dynamic> toJson() => _$ProfileModelToJson(this);
 }

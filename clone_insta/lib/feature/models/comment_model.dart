@@ -38,7 +38,7 @@ final class CommentModel extends BaseModel<CommentModel> {
 
   /// The method to convert the CommentModel to a Map.
   @override
-  Map<String, dynamic> toMap(CommentModel model) => _$CommentModelToJson(model);
+  Map<String, dynamic> toJson() => _$CommentModelToJson(this);
 
   /// The method to convert the Map to a CommentModel.
   @override
