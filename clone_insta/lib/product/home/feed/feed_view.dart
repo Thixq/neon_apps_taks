@@ -1,6 +1,8 @@
 import 'package:auto_route/annotations.dart';
 import 'package:clone_insta/feature/components/post_card/post_card.dart';
 import 'package:clone_insta/feature/constants/app_sizes.dart';
+import 'package:clone_insta/feature/dialog_and_bottom_sheets/comment_bottom_sheet.dart';
+import 'package:clone_insta/feature/models/comment_model/comment_models.dart';
 import 'package:clone_insta/feature/models/post_model/post_models.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +27,9 @@ class _FeedViewState extends State<FeedView> with _FeedMixin {
         centerTitle: false,
         title: const Text('Neon Academy Social'),
       ),
-      body: const _FeedContents(),
+      body: _FeedContents(
+        posts: [PopulatedPostModel.mock()],
+      ),
     );
   }
 }

@@ -68,17 +68,19 @@ class _ProfileInfo extends StatelessWidget {
                 children: [
                   _buildInfoText(
                     context,
-                    title: '${profile?.posts}',
+                    title: '${profile?.posts?.toCompactString()}',
                     text: _posts,
                   ),
                   _buildInfoText(
                     context,
-                    title: '${profile?.followers}',
+                    title:
+                        '${profile?.followers?.toCompactString(decimalDigits: 2)}',
                     text: _followers,
                   ),
                   _buildInfoText(
                     context,
-                    title: '${profile?.following}',
+                    title:
+                        '${profile?.following?.toCompactString(decimalDigits: 1)}',
                     text: _following,
                   ),
                 ],

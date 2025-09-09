@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:clone_insta/feature/components/custom_form_field.dart';
 import 'package:clone_insta/feature/constants/app_sizes.dart';
 import 'package:clone_insta/feature/extensions/context_theme_extension.dart';
-import 'package:clone_insta/feature/extensions/double_sized_extension.dart';
+import 'package:clone_insta/feature/extensions/num_extension.dart';
 import 'package:clone_insta/feature/routing/app_router.gr.dart';
 import 'package:clone_insta/feature/utils/validators/validator.dart';
 import 'package:flutter/material.dart';

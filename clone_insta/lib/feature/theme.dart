@@ -21,7 +21,7 @@ final class NeonTheme {
   static ThemeData dark() => ThemeData.dark().copyWith(
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.dark,
-      seedColor: const Color(0XFFFFF085),
+      seedColor: const Color(0XFF3b5998),
     ),
     filledButtonTheme: filledButtonTheme,
     inputDecorationTheme: inputDecorationTheme,
@@ -29,7 +29,7 @@ final class NeonTheme {
 
   /// The light theme for the app.
   static ThemeData light() => ThemeData.light().copyWith(
-    colorScheme: ColorScheme.fromSeed(seedColor: const Color(0XFFFFF085)),
+    colorScheme: ColorScheme.fromSeed(seedColor: const Color(0XFF3b5998)),
     filledButtonTheme: filledButtonTheme,
     inputDecorationTheme: inputDecorationTheme,
   );

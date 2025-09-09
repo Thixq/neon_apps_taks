@@ -13,6 +13,7 @@ class _App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appRoute = AppRouter();
+
     return MaterialApp.router(
       routerConfig: appRoute.config(),
       darkTheme: NeonTheme.dark(),

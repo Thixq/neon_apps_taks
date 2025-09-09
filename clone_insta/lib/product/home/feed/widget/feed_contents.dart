@@ -1,23 +1,37 @@
 part of '../feed_view.dart';
 
 class _FeedContents extends StatelessWidget {
-  const _FeedContents({super.key});
+  const _FeedContents({this.posts, super.key});
+
+  final List<PopulatedPostModel>? posts;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSizes.small),
-          child: PostCard(
-            post: PopulatedPostModel.mock(),
-          ),
-        );
-      },
-      separatorBuilder: (context, index) {
-        return const Divider();
-      },
-      itemCount: 12,
-    );
+    return posts == null
+        ? const Center(child: Text('Posts not found'))
+        : ListView.separated(
+            itemBuilder: (context, index) {
+              final post = posts![index];
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppSizes.small),
+                child: PostCard(
+                  commentPressed: () {
+                    CommentBottomSheet.show(
+                      context,
+                      comments: List.generate(
+                        13,
+                        (index) => PopulatedCommentModel.mock(),
+                      ),
+                    );
+                  },
+                  post: post,
+                ),
+              );
+            },
+            separatorBuilder: (context, index) {
+              return const Divider();
+            },
+            itemCount: posts!.length,
+          );
   }
 }
