@@ -20,6 +20,7 @@ final class _InfoBar extends StatelessWidget {
             IconButton(
               onPressed: null,
               icon: ProfileAvatar(
+                size: AppSizes.extraLarge * 1.5,
                 onPressed: onProfilePressed,
                 imageUrl: profile?.profileImage,
               ),

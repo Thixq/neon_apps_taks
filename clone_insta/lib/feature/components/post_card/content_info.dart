@@ -7,7 +7,7 @@ final class _ContentInfo extends StatelessWidget {
     required this.lastComment,
   });
 
-  final String? likeCount;
+  final int? likeCount;
   final String? byLastComment;
   final String? lastComment;
 
@@ -20,7 +20,7 @@ final class _ContentInfo extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _buildText(context, text: likeCount, subTitle: 'Likes'),
+          _buildText(context, text: '$likeCount', subTitle: 'Likes'),
           _buildText(context, text: byLastComment, subTitle: lastComment),
         ],
       ),

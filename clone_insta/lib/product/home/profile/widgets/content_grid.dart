@@ -3,7 +3,7 @@ part of '../profile_view.dart';
 class _ContentGrid extends StatelessWidget {
   const _ContentGrid({super.key, this.contents});
 
-  final List<PostPreviewModel>? contents;
+  final List<PopulatedPostModel>? contents;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +16,11 @@ class _ContentGrid extends StatelessWidget {
       itemCount: contents?.length,
       itemBuilder: (context, index) {
         final post = contents?[index];
-        return post?.imagePath == null
+        return post?.contentImageUrl == null
             ? null
             : CachedNetworkImage(
                 fit: BoxFit.cover,
-                imageUrl: post!.imagePath!,
+                imageUrl: post!.contentImageUrl!,
                 placeholder: (context, url) => const Center(
                   child: CircularProgressIndicator.adaptive(),
                 ),

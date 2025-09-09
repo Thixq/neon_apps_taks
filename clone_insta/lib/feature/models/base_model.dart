@@ -1,5 +1,7 @@
+import 'package:equatable/equatable.dart';
+
 /// This abstract class is the base class for all models in this project.
-abstract class BaseModel<T> {
+abstract class BaseModel<T> implements Equatable {
   /// The constructor for the model.
   const BaseModel({required this.id});
 

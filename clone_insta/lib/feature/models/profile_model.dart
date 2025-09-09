@@ -56,4 +56,18 @@ final class ProfileModel extends BaseModel<ProfileModel> {
 
   @override
   Map<String, dynamic> toJson() => _$ProfileModelToJson(this);
+
+  @override
+  List<Object?> get props => [
+    id,
+    fullName,
+    nickName,
+    profileImage,
+    followers,
+    following,
+    posts,
+  ];
+
+  @override
+  bool? get stringify => true;
 }

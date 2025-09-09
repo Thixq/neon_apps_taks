@@ -4,15 +4,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clone_insta/feature/components/profile_avatar.dart';
 import 'package:clone_insta/feature/constants/app_sizes.dart';
 import 'package:clone_insta/feature/extensions/context_theme_extension.dart';
-import 'package:clone_insta/feature/models/post_model.dart';
+import 'package:clone_insta/feature/models/post_model/post_models.dart';
 import 'package:clone_insta/feature/models/profile_model.dart';
 import 'package:flutter/material.dart';
 
-part 'action_item.dart';
 part 'action_bar.dart';
-part 'info_bar.dart';
-part 'content_info.dart';
+part 'action_item.dart';
 part 'content.dart';
+part 'content_info.dart';
+part 'info_bar.dart';
 
 /// A card that represents a post.
 final class PostCard extends StatelessWidget {
@@ -28,7 +28,7 @@ final class PostCard extends StatelessWidget {
   });
 
   /// The post that this widget represents.
-  final PostModel? post;
+  final PopulatedPostModel? post;
 
   final VoidCallback? morePressed;
   final VoidCallback? profilePressed;
@@ -61,7 +61,7 @@ final class PostCard extends StatelessWidget {
   /// Builds the content of the post.
   Widget _buildContent(BuildContext context) {
     return _Content(
-      contentImage: post?.contentImage,
+      contentImage: post?.contentImageUrl,
     );
   }
 
@@ -89,9 +89,9 @@ final class PostCard extends StatelessWidget {
   /// Builds the content information at the bottom of the post.
   Widget _buildContenInfo() {
     return _ContentInfo(
-      likeCount: post?.comment?.likeCount,
-      byLastComment: post?.comment?.byLastComment,
-      lastComment: post?.comment?.lastComment,
+      likeCount: post?.likeCount,
+      byLastComment: post?.comment.profile.fullName,
+      lastComment: post?.comment.comment,
     );
   }
 }

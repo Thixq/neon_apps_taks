@@ -3,8 +3,8 @@ part of '../profile_view.dart';
 class _ProfileContent extends StatefulWidget {
   const _ProfileContent({super.key, this.posts, this.savedPosts});
 
-  final List<PostPreviewModel>? posts;
-  final List<PostPreviewModel>? savedPosts;
+  final List<PopulatedPostModel>? posts;
+  final List<PopulatedPostModel>? savedPosts;
 
   @override
   State<_ProfileContent> createState() => _ProfileContentState();
