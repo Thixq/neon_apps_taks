@@ -28,7 +28,10 @@ class _FeedViewState extends State<FeedView> with _FeedMixin {
         title: const Text('Neon Academy Social'),
       ),
       body: _FeedContents(
-        posts: [PopulatedPostModel.mock()],
+        posts: List.generate(
+          15,
+          (index) => PopulatedPostModel.mock(),
+        ),
       ),
     );
   }
