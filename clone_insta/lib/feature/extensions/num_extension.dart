@@ -12,6 +12,7 @@ extension PercentSize on num {
       (toDouble() / 100) * MediaQuery.of(context).size.height;
 }
 
+/// Extension for [num] to get a human-friendly string.
 extension CompactNumber on num {
   /// Returns a localized compact string (e.g. 12345 -> "12K" or "12k" depending on options/locale).
   ///
@@ -25,10 +26,10 @@ extension CompactNumber on num {
     bool lowercase = true,
     bool removeNbsp = true,
   }) {
-    final fmt = NumberFormat.compact(locale: locale);
     // configure fraction digits
-    fmt.maximumFractionDigits = decimalDigits;
-    fmt.minimumFractionDigits = 0;
+    final fmt = NumberFormat.compact(locale: locale)
+      ..maximumFractionDigits = decimalDigits
+      ..minimumFractionDigits = 0;
 
     var formatted = fmt.format(this);
 

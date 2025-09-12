@@ -7,6 +7,7 @@ import 'package:clone_insta/feature/extensions/context_theme_extension.dart';
 import 'package:clone_insta/feature/models/post_model/post_models.dart';
 import 'package:clone_insta/feature/models/profile_model.dart';
 import 'package:flutter/material.dart';
+import 'package:readmore/readmore.dart';
 
 part 'action_bar.dart';
 part 'action_item.dart';
@@ -92,6 +93,7 @@ final class PostCard extends StatelessWidget {
       likeCount: post?.likeCount,
       byLastComment: post?.comment.profile.fullName,
       lastComment: post?.comment.comment,
+      contentDescription: post?.contentDescription,
     );
   }
 }

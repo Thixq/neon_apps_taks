@@ -1,13 +1,15 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:clone_insta/feature/components/post_card/post_card.dart';
 import 'package:clone_insta/feature/constants/app_sizes.dart';
 import 'package:clone_insta/feature/dialog_and_bottom_sheets/comment_bottom_sheet.dart';
 import 'package:clone_insta/feature/models/comment_model/comment_models.dart';
 import 'package:clone_insta/feature/models/post_model/post_models.dart';
+import 'package:clone_insta/feature/routing/app_router.gr.dart';
 import 'package:flutter/material.dart';
 
 part 'feed_mixin.dart';
 part 'widget/feed_contents.dart';
+part 'widget/feed_app_bar.dart';
 
 @RoutePage()
 /// FeedView
@@ -23,9 +25,8 @@ class _FeedViewState extends State<FeedView> with _FeedMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        title: const Text('Neon Academy Social'),
+      appBar: _FeedAppBar(
+        addPostPressed: _navigateToCreatePost,
       ),
       body: _FeedContents(
         posts: List.generate(

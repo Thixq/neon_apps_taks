@@ -9,6 +9,7 @@ class FirebasePostModel extends BaseModel<FirebasePostModel> {
     this.profileId,
     this.likeCount,
     this.contentImageUrl,
+    this.contentDescription,
     this.lastCommentId,
     this.createdAt,
   });
@@ -30,6 +31,9 @@ class FirebasePostModel extends BaseModel<FirebasePostModel> {
 
   /// Content image of the post
   final String? contentImageUrl;
+
+  /// Description of the post
+  final String? contentDescription;
 
   /// Comment of the post
   final String? lastCommentId;

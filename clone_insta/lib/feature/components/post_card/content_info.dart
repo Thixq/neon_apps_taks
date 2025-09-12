@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_if_elements_to_conditional_expressions, document_ignores
+
 part of 'post_card.dart';
 
 final class _ContentInfo extends StatelessWidget {
@@ -5,11 +7,13 @@ final class _ContentInfo extends StatelessWidget {
     required this.likeCount,
     required this.byLastComment,
     required this.lastComment,
+    this.contentDescription,
   });
 
   final int? likeCount;
   final String? byLastComment;
   final String? lastComment;
+  final String? contentDescription;
 
   @override
   Widget build(BuildContext context) {
@@ -20,20 +24,57 @@ final class _ContentInfo extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _buildText(context, text: '$likeCount', subTitle: 'Likes'),
-          _buildText(context, text: byLastComment, subTitle: lastComment),
+          _buildText(
+            context,
+            text: '$likeCount',
+            subTitle: 'Likes',
+            maxLines: 1,
+          ),
+          contentDescription != null
+              ? _buildContentDescription(
+                  context,
+                  contentDescription: contentDescription,
+                )
+              : const SizedBox.shrink(),
+          _buildText(
+            context,
+            text: byLastComment,
+            subTitle: lastComment,
+            maxLines: 2,
+          ),
         ],
       ),
     );
   }
 
-  RichText _buildText(
+  Widget _buildContentDescription(
+    BuildContext context, {
+    String? contentDescription,
+  }) {
+    return ReadMoreText(
+      '$contentDescription',
+      trimMode: TrimMode.Line,
+      delimiter: ' ',
+      style: context.textTheme.bodyMedium,
+      moreStyle: context.textTheme.bodyMedium?.copyWith(
+        color: context.theme.colorScheme.primary,
+        fontWeight: FontWeight.bold,
+      ),
+      lessStyle: context.textTheme.bodyMedium?.copyWith(
+        color: context.theme.colorScheme.primary,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
+  Widget _buildText(
     BuildContext context, {
     String? text,
     String? subTitle,
+    int? maxLines,
   }) {
     return RichText(
-      maxLines: 2,
+      maxLines: maxLines,
       overflow: TextOverflow.ellipsis,
       text: TextSpan(
         text: text,
@@ -41,7 +82,7 @@ final class _ContentInfo extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
         children: [
-          const TextSpan(text: ' '),
+          text != null ? const TextSpan(text: ' ') : const TextSpan(text: ''),
           TextSpan(text: subTitle, style: context.textTheme.bodyMedium),
         ],
       ),
