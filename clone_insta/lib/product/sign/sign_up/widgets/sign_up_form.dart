@@ -15,7 +15,7 @@ class _SignUpForm extends StatelessWidget {
         spacing: AppSizes.medium,
         children: [
           CustomFormField(
-            hintText: 'Username',
+            hintText: 'Nick name',
             validator: Validator.generic.isEmpty,
           ),
           CustomFormField(

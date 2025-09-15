@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first, document_ignores
 import 'package:clone_insta/feature/models/base_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -11,6 +12,7 @@ final class ProfileModel extends BaseModel<ProfileModel> {
     required super.id,
     this.fullName,
     this.nickName,
+    this.email,
     this.profileImage,
     this.followers,
     this.following,
@@ -37,6 +39,9 @@ final class ProfileModel extends BaseModel<ProfileModel> {
 
   /// The nickname of the user.
   final String? nickName;
+
+  /// The email of the user.
+  final String? email;
 
   /// The URL of the profile image of the user.
   final String? profileImage;
@@ -70,4 +75,26 @@ final class ProfileModel extends BaseModel<ProfileModel> {
 
   @override
   bool? get stringify => true;
+
+  ProfileModel copyWith({
+    String? id,
+    String? fullName,
+    String? nickName,
+    String? email,
+    String? profileImage,
+    int? followers,
+    int? following,
+    int? posts,
+  }) {
+    return ProfileModel(
+      id: id ?? this.id,
+      fullName: fullName ?? this.fullName,
+      nickName: nickName ?? this.nickName,
+      email: email ?? this.email,
+      profileImage: profileImage ?? this.profileImage,
+      followers: followers ?? this.followers,
+      following: following ?? this.following,
+      posts: posts ?? this.posts,
+    );
+  }
 }
