@@ -10,7 +10,7 @@ final class PostManager {
 
   /// Create a new post
   Future<String?> createPost(FirebasePostModel post) async {
-    final doc = _firestore.collection('posts').doc();
+    final doc = _firestore.collection(EndPointConstant.posts).doc();
     final data = post.toJson()..['id'] = doc.id;
     await doc.set(data);
     return doc.id;
@@ -18,7 +18,10 @@ final class PostManager {
 
   /// Get a post by id
   Future<FirebasePostModel?> getPost(String postId) async {
-    final doc = await _firestore.collection('posts').doc(postId).get();
+    final doc = await _firestore
+        .collection(EndPointConstant.posts)
+        .doc(postId)
+        .get();
     if (!doc.exists) return null;
     return FirebasePostModel.fromJson(doc.data()!);
   }
@@ -30,8 +33,8 @@ final class PostManager {
     DocumentSnapshot? startAfter,
   }) async {
     var query = _firestore
-        .collection('posts')
-        .where('userId', isEqualTo: userId)
+        .collection(EndPointConstant.posts)
+        .where(EndPointConstant.userId, isEqualTo: userId)
         .orderBy('createdAt', descending: true)
         .limit(limit);
 
@@ -47,12 +50,15 @@ final class PostManager {
 
   /// Post update
   Future<void> updatePost(String postId, PostUpdateModel data) async {
-    await _firestore.collection('posts').doc(postId).update(data.toJson());
+    await _firestore
+        .collection(EndPointConstant.posts)
+        .doc(postId)
+        .update(data.toJson());
   }
 
   /// Delete post
   Future<void> deletePost(String postId) async {
     await _firestore.collection(EndPointConstant.posts).doc(postId).delete();
-    await _firestore.collection('comments').doc(postId).delete();
+    await _firestore.collection(EndPointConstant.comments).doc(postId).delete();
   }
 }

@@ -1,3 +1,4 @@
+import 'package:clone_insta/feature/constants/end_point_constant.dart';
 import 'package:clone_insta/feature/models/post_model/post_models.dart';
 import 'package:clone_insta/feature/utils/extension/extension_populated.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -36,8 +37,11 @@ final class FeedManager {
   /// Get the user's follows
   Future<List<String>> _fetchFollowingIds(String userId) async {
     final snapshot = await _firestore
-        .collection('relationships')
-        .where('sides.$userId.followStatus', isEqualTo: 'active')
+        .collection(EndPointConstant.relationships)
+        .where(
+          '${EndPointConstant.sides}.$userId.${EndPointConstant.followStatus}',
+          isEqualTo: 'active',
+        )
         .get();
 
     final ids = <String>[];
@@ -59,9 +63,9 @@ final class FeedManager {
   ) async {
     // Firestore `whereIn` max 10 ID ile sınırlı
     final snapshot = await _firestore
-        .collection('posts')
-        .where('profileId', whereIn: authorIds.take(10).toList())
-        .orderBy('createdAt', descending: true)
+        .collection(EndPointConstant.posts)
+        .where(EndPointConstant.userId, whereIn: authorIds.take(10).toList())
+        .orderBy(EndPointConstant.createdAt, descending: true)
         .limit(30)
         .get();
 

@@ -29,9 +29,18 @@ final class EndPointConstant {
 
   // --- query parameters ---
 
-  ///  userId
+  ///  query for end point
   static const String userId = 'userId';
 
-  ///  startAfter
+  ///  query for end point
   static const String startAfter = 'startAfter';
+
+  ///  query for end point
+  static const String createdAt = 'createdAt';
+
+  ///  query for end point
+  static const String sides = 'sides';
+
+  ///  query for end point
+  static const String followStatus = 'followStatus';
 }
