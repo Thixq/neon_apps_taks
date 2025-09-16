@@ -1,48 +1,50 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, document_ignores
+
 part of 'post_models.dart';
 
-/// The model for a post.
+/// The Firestore representation of a post.
 @JsonSerializable(explicitToJson: true)
 class FirebasePostModel extends BaseModel<FirebasePostModel> {
-  /// Constructor
   const FirebasePostModel({
     required super.id,
-    this.profileId,
-    this.likeCount,
+    required this.profileId,
     this.contentImageUrl,
     this.caption,
     this.lastCommentId,
+    this.likeCount,
     this.createdAt,
   });
 
-  /// This method returns a mock post model with id, profile, contentImage and comment
-  factory FirebasePostModel.mock() => const FirebasePostModel(
-    id: '1',
+  /// Mock post for testing
+  factory FirebasePostModel.mock() => FirebasePostModel(
+    id: 'post_1',
     profileId: 'user_1',
     contentImageUrl: 'https://picsum.photos/900/1600',
     lastCommentId: 'comment_1',
+    caption: 'This is a mock post',
+    likeCount: 10,
+    createdAt: DateTime.now(),
   );
 
-  /// From json
   factory FirebasePostModel.fromJson(Map<String, dynamic> json) =>
       _$FirebasePostModelFromJson(json);
 
-  /// Profile of the post
-  final String? profileId;
+  /// Author of the post
+  final String profileId;
 
-  /// Content image of the post
+  /// Media of the post (optional)
   final String? contentImageUrl;
 
-  /// Description of the post
+  /// Description of the post (optional)
   final String? caption;
 
-  /// Comment of the post
+  /// Last comment id (optional, denormalized)
   final String? lastCommentId;
 
   /// Number of likes
   final int? likeCount;
 
-  /// Created at of the post
+  /// When post was created
   @TimestampNullableConverter()
   final DateTime? createdAt;
 
@@ -58,6 +60,7 @@ class FirebasePostModel extends BaseModel<FirebasePostModel> {
     id,
     profileId,
     contentImageUrl,
+    caption,
     lastCommentId,
     likeCount,
     createdAt,

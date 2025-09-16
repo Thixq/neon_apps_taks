@@ -9,11 +9,11 @@ part of 'post_models.dart';
 FirebasePostModel _$FirebasePostModelFromJson(Map<String, dynamic> json) =>
     FirebasePostModel(
       id: json['id'] as String,
-      profileId: json['profileId'] as String?,
-      likeCount: (json['likeCount'] as num?)?.toInt(),
+      profileId: json['profileId'] as String,
       contentImageUrl: json['contentImageUrl'] as String?,
       caption: json['caption'] as String?,
       lastCommentId: json['lastCommentId'] as String?,
+      likeCount: (json['likeCount'] as num?)?.toInt(),
       createdAt: const TimestampNullableConverter().fromJson(
         json['createdAt'] as Timestamp?,
       ),

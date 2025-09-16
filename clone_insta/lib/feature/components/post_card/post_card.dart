@@ -91,8 +91,8 @@ final class PostCard extends StatelessWidget {
   Widget _buildContenInfo() {
     return _ContentInfo(
       likeCount: post?.likeCount,
-      byLastComment: post?.comment.profile.fullName,
-      lastComment: post?.comment.comment,
+      byLastComment: post?.lastComment?.profile.fullName,
+      lastComment: post?.lastComment?.comment,
       caption: post?.caption,
     );
   }
