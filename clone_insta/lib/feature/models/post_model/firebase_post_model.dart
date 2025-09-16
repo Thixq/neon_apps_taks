@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first, document_ignores
 part of 'post_models.dart';
 
 /// The model for a post.
@@ -9,7 +10,7 @@ class FirebasePostModel extends BaseModel<FirebasePostModel> {
     this.profileId,
     this.likeCount,
     this.contentImageUrl,
-    this.contentDescription,
+    this.caption,
     this.lastCommentId,
     this.createdAt,
   });
@@ -33,7 +34,7 @@ class FirebasePostModel extends BaseModel<FirebasePostModel> {
   final String? contentImageUrl;
 
   /// Description of the post
-  final String? contentDescription;
+  final String? caption;
 
   /// Comment of the post
   final String? lastCommentId;
@@ -64,4 +65,23 @@ class FirebasePostModel extends BaseModel<FirebasePostModel> {
 
   @override
   bool? get stringify => true;
+
+  FirebasePostModel copyWith({
+    String? profileId,
+    String? contentImageUrl,
+    String? caption,
+    String? lastCommentId,
+    int? likeCount,
+    DateTime? createdAt,
+  }) {
+    return FirebasePostModel(
+      id: id,
+      profileId: profileId ?? this.profileId,
+      contentImageUrl: contentImageUrl ?? this.contentImageUrl,
+      caption: caption ?? this.caption,
+      lastCommentId: lastCommentId ?? this.lastCommentId,
+      likeCount: likeCount ?? this.likeCount,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
 }

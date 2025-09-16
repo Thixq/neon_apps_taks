@@ -7,13 +7,13 @@ final class _ContentInfo extends StatelessWidget {
     required this.likeCount,
     required this.byLastComment,
     required this.lastComment,
-    this.contentDescription,
+    this.caption,
   });
 
   final int? likeCount;
   final String? byLastComment;
   final String? lastComment;
-  final String? contentDescription;
+  final String? caption;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +30,10 @@ final class _ContentInfo extends StatelessWidget {
             subTitle: 'Likes',
             maxLines: 1,
           ),
-          contentDescription != null
+          caption != null
               ? _buildContentDescription(
                   context,
-                  contentDescription: contentDescription,
+                  contentDescription: caption,
                 )
               : const SizedBox.shrink(),
           _buildText(

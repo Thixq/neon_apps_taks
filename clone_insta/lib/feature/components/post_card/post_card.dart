@@ -93,7 +93,7 @@ final class PostCard extends StatelessWidget {
       likeCount: post?.likeCount,
       byLastComment: post?.comment.profile.fullName,
       lastComment: post?.comment.comment,
-      contentDescription: post?.contentDescription,
+      caption: post?.caption,
     );
   }
 }

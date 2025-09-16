@@ -12,7 +12,7 @@ FirebasePostModel _$FirebasePostModelFromJson(Map<String, dynamic> json) =>
       profileId: json['profileId'] as String?,
       likeCount: (json['likeCount'] as num?)?.toInt(),
       contentImageUrl: json['contentImageUrl'] as String?,
-      contentDescription: json['contentDescription'] as String?,
+      caption: json['caption'] as String?,
       lastCommentId: json['lastCommentId'] as String?,
       createdAt: const TimestampNullableConverter().fromJson(
         json['createdAt'] as Timestamp?,
@@ -25,7 +25,7 @@ Map<String, dynamic> _$FirebasePostModelToJson(
   'id': instance.id,
   'profileId': instance.profileId,
   'contentImageUrl': instance.contentImageUrl,
-  'contentDescription': instance.contentDescription,
+  'caption': instance.caption,
   'lastCommentId': instance.lastCommentId,
   'likeCount': instance.likeCount,
   'createdAt': const TimestampNullableConverter().toJson(instance.createdAt),
