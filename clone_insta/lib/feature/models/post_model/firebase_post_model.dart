@@ -4,7 +4,7 @@ part of 'post_models.dart';
 
 /// The Firestore representation of a post.
 @JsonSerializable(explicitToJson: true)
-class FirebasePostModel extends BaseModel<FirebasePostModel> {
+final class FirebasePostModel extends BaseModel<FirebasePostModel> {
   const FirebasePostModel({
     required super.id,
     required this.profileId,

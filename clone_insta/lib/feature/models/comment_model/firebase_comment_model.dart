@@ -39,13 +39,6 @@ class FirebaseCommentModel extends BaseModel<FirebaseCommentModel> {
 
   /// The method to convert the Map to a FirebaseCommentModel.
   @override
-  /*************  ✨ Windsurf Command ⭐  *************/
-  /// The method to convert the Map to a FirebaseCommentModel.
-  ///
-  /// This method is used to convert a Map to a FirebaseCommentModel. The
-  /// Map should contain the id, comment, commentedAt, and userId of the
-  /// comment.
-  /// *****  d1108bc9-6987-4882-a17a-d7049c8bf810  ******
   FirebaseCommentModel fromJson(Map<String, dynamic> json) =>
       _$FirebaseCommentModelFromJson(json);
 
