@@ -5,9 +5,9 @@ final class PopulatedCommentModel extends FirebaseCommentModel {
   /// The populated model for a comment, which includes the profile data.
   const PopulatedCommentModel({
     required super.id,
-    required this.profile,
-    required super.comment,
-    required super.commentedAt,
+    this.profile,
+    super.comment,
+    super.commentedAt,
   });
 
   /// Creates a mock populated comment model.
@@ -19,5 +19,5 @@ final class PopulatedCommentModel extends FirebaseCommentModel {
   );
 
   /// The profile data for the user who made the comment.
-  final ProfileModel profile;
+  final ProfileModel? profile;
 }

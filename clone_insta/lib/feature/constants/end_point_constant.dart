@@ -26,4 +26,12 @@ final class EndPointConstant {
 
   ///  posts collection
   static const String posts = 'posts';
+
+  // --- query parameters ---
+
+  ///  userId
+  static const String userId = 'userId';
+
+  ///  startAfter
+  static const String startAfter = 'startAfter';
 }

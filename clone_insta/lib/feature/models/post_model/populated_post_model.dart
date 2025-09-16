@@ -5,7 +5,7 @@ final class PopulatedPostModel extends FirebasePostModel {
   /// Creates a populated post model.
   const PopulatedPostModel({
     required super.id,
-    required super.profileId,
+    required super.userId,
     required this.profile,
     super.contentImageUrl,
     super.caption,
@@ -18,7 +18,7 @@ final class PopulatedPostModel extends FirebasePostModel {
   /// Mock populated post
   factory PopulatedPostModel.mock() => PopulatedPostModel(
     id: 'postId',
-    profileId: 'user_1',
+    userId: 'user_1',
     profile: ProfileModel.mock(),
     lastComment: PopulatedCommentModel.mock(),
     contentImageUrl: 'https://picsum.photos/900/1600',

@@ -36,10 +36,10 @@ extension FirebasePostModelX on FirebasePostModel {
   Future<PopulatedPostModel> populateWithProfile(
     FirebaseFirestore firestore,
   ) async {
-    final userDoc = await firestore.collection('users').doc(profileId).get();
+    final userDoc = await firestore.collection('users').doc(userId).get();
 
     if (!userDoc.exists) {
-      throw Exception('User not found for id $profileId');
+      throw Exception('User not found for id $userDoc');
     }
 
     final profile = ProfileModel.fromJson(userDoc.data()!..['id'] = userDoc.id);
@@ -61,7 +61,7 @@ extension FirebasePostModelX on FirebasePostModel {
     return PopulatedPostModel(
       id: id,
       profile: profile,
-      profileId: profileId,
+      userId: userId,
       caption: caption,
       createdAt: createdAt,
       likeCount: likeCount,

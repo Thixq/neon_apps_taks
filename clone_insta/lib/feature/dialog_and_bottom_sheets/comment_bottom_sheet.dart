@@ -49,7 +49,7 @@ class CommentBottomSheet {
                               imageUrl: 'https://picsum.photos/200',
                               size: AppSizes.extraLarge,
                             ),
-                            title: Text('${comment.profile.fullName}'),
+                            title: Text('${comment.profile?.fullName}'),
                             subtitle: Text(
                               '${comment.comment}',
                               maxLines: 4,

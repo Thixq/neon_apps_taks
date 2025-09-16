@@ -9,7 +9,7 @@ part of 'post_models.dart';
 FirebasePostModel _$FirebasePostModelFromJson(Map<String, dynamic> json) =>
     FirebasePostModel(
       id: json['id'] as String,
-      profileId: json['profileId'] as String,
+      userId: json['userId'] as String,
       contentImageUrl: json['contentImageUrl'] as String?,
       caption: json['caption'] as String?,
       lastCommentId: json['lastCommentId'] as String?,
@@ -23,7 +23,7 @@ Map<String, dynamic> _$FirebasePostModelToJson(
   FirebasePostModel instance,
 ) => <String, dynamic>{
   'id': instance.id,
-  'profileId': instance.profileId,
+  'userId': instance.userId,
   'contentImageUrl': instance.contentImageUrl,
   'caption': instance.caption,
   'lastCommentId': instance.lastCommentId,

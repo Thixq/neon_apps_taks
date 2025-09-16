@@ -7,7 +7,7 @@ part of 'post_models.dart';
 final class FirebasePostModel extends BaseModel<FirebasePostModel> {
   const FirebasePostModel({
     required super.id,
-    required this.profileId,
+    required this.userId,
     this.contentImageUrl,
     this.caption,
     this.lastCommentId,
@@ -18,7 +18,7 @@ final class FirebasePostModel extends BaseModel<FirebasePostModel> {
   /// Mock post for testing
   factory FirebasePostModel.mock() => FirebasePostModel(
     id: 'post_1',
-    profileId: 'user_1',
+    userId: 'user_1',
     contentImageUrl: 'https://picsum.photos/900/1600',
     lastCommentId: 'comment_1',
     caption: 'This is a mock post',
@@ -30,7 +30,7 @@ final class FirebasePostModel extends BaseModel<FirebasePostModel> {
       _$FirebasePostModelFromJson(json);
 
   /// Author of the post
-  final String profileId;
+  final String userId;
 
   /// Media of the post (optional)
   final String? contentImageUrl;
@@ -58,7 +58,7 @@ final class FirebasePostModel extends BaseModel<FirebasePostModel> {
   @override
   List<Object?> get props => [
     id,
-    profileId,
+    userId,
     contentImageUrl,
     caption,
     lastCommentId,
@@ -70,7 +70,7 @@ final class FirebasePostModel extends BaseModel<FirebasePostModel> {
   bool? get stringify => true;
 
   FirebasePostModel copyWith({
-    String? profileId,
+    String? userId,
     String? contentImageUrl,
     String? caption,
     String? lastCommentId,
@@ -79,7 +79,7 @@ final class FirebasePostModel extends BaseModel<FirebasePostModel> {
   }) {
     return FirebasePostModel(
       id: id,
-      profileId: profileId ?? this.profileId,
+      userId: userId ?? this.userId,
       contentImageUrl: contentImageUrl ?? this.contentImageUrl,
       caption: caption ?? this.caption,
       lastCommentId: lastCommentId ?? this.lastCommentId,
