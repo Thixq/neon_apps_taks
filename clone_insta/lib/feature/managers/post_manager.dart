@@ -3,7 +3,9 @@ import 'package:clone_insta/feature/models/post_model/post_models.dart';
 import 'package:clone_insta/feature/models/post_model/post_update_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+/// The manager for posts
 final class PostManager {
+  /// Constructor
   PostManager({required FirebaseFirestore firestore}) : _firestore = firestore;
 
   final FirebaseFirestore _firestore;
@@ -35,7 +37,7 @@ final class PostManager {
     var query = _firestore
         .collection(EndPointConstant.posts)
         .where(EndPointConstant.userId, isEqualTo: userId)
-        .orderBy('createdAt', descending: true)
+        .orderBy(EndPointConstant.createdAt, descending: true)
         .limit(limit);
 
     if (startAfter != null) {
@@ -59,6 +61,6 @@ final class PostManager {
   /// Delete post
   Future<void> deletePost(String postId) async {
     await _firestore.collection(EndPointConstant.posts).doc(postId).delete();
-    await _firestore.collection(EndPointConstant.comments).doc(postId).delete();
+    //! TODO: Delete comments and likes subcollections
   }
 }

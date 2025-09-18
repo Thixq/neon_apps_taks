@@ -18,19 +18,21 @@ final class NeonTheme {
   );
 
   /// The dark theme for the app.
-  static ThemeData dark() => ThemeData.dark().copyWith(
-    colorScheme: ColorScheme.fromSeed(
-      brightness: Brightness.dark,
-      seedColor: const Color(0XFF3b5998),
-    ),
-    filledButtonTheme: filledButtonTheme,
-    inputDecorationTheme: inputDecorationTheme,
-  );
+  static ThemeData dark({required Color seedColor}) =>
+      ThemeData.dark().copyWith(
+        colorScheme: ColorScheme.fromSeed(
+          brightness: Brightness.dark,
+          seedColor: seedColor,
+        ),
+        filledButtonTheme: filledButtonTheme,
+        inputDecorationTheme: inputDecorationTheme,
+      );
 
   /// The light theme for the app.
-  static ThemeData light() => ThemeData.light().copyWith(
-    colorScheme: ColorScheme.fromSeed(seedColor: const Color(0XFF3b5998)),
-    filledButtonTheme: filledButtonTheme,
-    inputDecorationTheme: inputDecorationTheme,
-  );
+  static ThemeData light({required Color seedColor}) =>
+      ThemeData.light().copyWith(
+        colorScheme: ColorScheme.fromSeed(seedColor: seedColor),
+        filledButtonTheme: filledButtonTheme,
+        inputDecorationTheme: inputDecorationTheme,
+      );
 }
