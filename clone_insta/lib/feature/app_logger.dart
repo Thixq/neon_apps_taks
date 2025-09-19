@@ -44,6 +44,12 @@ class AppLogger {
     debugPrint('👤 [USER] $userId');
   }
 
+  /// Clear user ID
+  static Future<void> clearUserId() async {
+    await _crashlytics.setUserIdentifier('');
+    debugPrint('👤 [USER] cleared');
+  }
+
   /// Test crash
   static Future<void> crash() async {
     _crashlytics.crash();
