@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 /// A class that holds the criteria for a Firestore query.
 class FirestoreQuery {
+  /// constructor
   FirestoreQuery({
     this.filters,
     this.sorts,

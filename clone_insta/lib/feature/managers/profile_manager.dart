@@ -55,7 +55,7 @@ final class ProfileManager {
   }
 
   /// Sign up with email and password
-  Future<void> signUpWithEmailAndPassword({
+  Future<bool> signUpWithEmailAndPassword({
     required String nickName,
     required String fullName,
     required String email,
@@ -93,6 +93,7 @@ final class ProfileManager {
 
         AppLogger.log('✅ User signed up successfully: ${credential.user!.uid}');
       }
+      return true;
     } catch (e, stack) {
       AppLogger.error(
         e,
@@ -104,7 +105,7 @@ final class ProfileManager {
   }
 
   /// Sign in with email and password
-  Future<void> signInWithEmailAndPassword({
+  Future<bool> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
@@ -120,6 +121,7 @@ final class ProfileManager {
           .then((value) => ProfileModel.fromJson(value.data()!));
       await AppLogger.setUserId(_auth.currentUser!.uid);
       AppLogger.log('✅ User signed in: ${_auth.currentUser!.uid}');
+      return true;
     } catch (e, stack) {
       AppLogger.error(
         e,

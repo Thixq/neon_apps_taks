@@ -3,6 +3,8 @@ import 'package:clone_insta/feature/components/custom_form_field.dart';
 import 'package:clone_insta/feature/constants/app_sizes.dart';
 import 'package:clone_insta/feature/extensions/context_theme_extension.dart';
 import 'package:clone_insta/feature/extensions/num_extension.dart';
+import 'package:clone_insta/feature/init/dependency_injection/dependency_container.dart';
+import 'package:clone_insta/feature/managers/profile_manager.dart';
 import 'package:clone_insta/feature/routing/app_router.gr.dart';
 import 'package:clone_insta/feature/utils/validators/validator.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +30,10 @@ class _SignUpViewState extends State<SignUpView> with _SignUpMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      extendBody: true,
       body: SafeArea(
+        maintainBottomViewPadding: true,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppSizes.medium),
           child: Column(
@@ -40,7 +45,13 @@ class _SignUpViewState extends State<SignUpView> with _SignUpMixin {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildTitle(context),
-                    _buildForm(),
+                    _buildForm(
+                      formKey: _formKey,
+                      emailController: _emailController,
+                      passwordController: _passwordController,
+                      nameController: _nameController,
+                      nickNameController: _nickNameController,
+                    ),
                     _buildSignUpButton(context),
                   ],
                 ),
@@ -73,9 +84,19 @@ class _SignUpViewState extends State<SignUpView> with _SignUpMixin {
     );
   }
 
-  _SignUpForm _buildForm() {
+  _SignUpForm _buildForm({
+    required GlobalKey<FormState> formKey,
+    required TextEditingController emailController,
+    required TextEditingController passwordController,
+    required TextEditingController nameController,
+    required TextEditingController nickNameController,
+  }) {
     return _SignUpForm(
-      formKey: _formKey,
+      formKey: formKey,
+      emailController: emailController,
+      passwordController: passwordController,
+      nameController: nameController,
+      nickNameController: nickNameController,
     );
   }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_catches_without_on_clauses, prefer_constructors_over_static_methods, lines_longer_than_80_chars, document_ignores
+
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 

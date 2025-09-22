@@ -23,11 +23,11 @@ final class DependencyManager {
     _getIt
       ..registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance)
       ..registerSingleton<FirebaseAuth>(FirebaseAuth.instance)
-      ..registerLazySingletonAsync(
+      ..registerSingletonAsync(
         () async {
           final manager = await ProfileManager.initialize(
-            firestore: await _getIt.getAsync<FirebaseFirestore>(),
-            auth: await _getIt.getAsync<FirebaseAuth>(),
+            firestore: _getIt.get<FirebaseFirestore>(),
+            auth: _getIt.get<FirebaseAuth>(),
           );
           return manager;
         },

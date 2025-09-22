@@ -10,7 +10,7 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: SplashRoute.page),
+    AutoRoute(initial: true, page: SplashRoute.page),
     AutoRoute(
       page: SignShellRoute.page,
       children: [
@@ -19,7 +19,6 @@ class AppRouter extends RootStackRouter {
       ],
     ),
     AutoRoute(
-      initial: true,
       page: HomeShellRoute.page,
       children: [
         AutoRoute(initial: true, page: FeedRoute.page),

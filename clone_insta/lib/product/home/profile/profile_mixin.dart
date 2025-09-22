@@ -1,3 +1,11 @@
 part of 'profile_view.dart';
 
-mixin _ProfileMixin on State<ProfileView> {}
+mixin _ProfileMixin on State<ProfileView> {
+  late final ProfileManager user;
+
+  @override
+  void initState() {
+    user = DependencyContainer.profileManager;
+    super.initState();
+  }
+}

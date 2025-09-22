@@ -41,7 +41,6 @@ class _CustomFormFieldState extends State<CustomFormField> {
 
   @override
   void dispose() {
-    widget.controller?.dispose();
     super.dispose();
   }
 
