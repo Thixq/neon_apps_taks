@@ -1,3 +1,4 @@
+import 'package:clone_insta/feature/constants/end_point_constant.dart';
 import 'package:clone_insta/feature/models/comment_model/comment_models.dart';
 import 'package:clone_insta/feature/models/post_model/post_models.dart';
 import 'package:clone_insta/feature/models/profile_model.dart';
@@ -48,9 +49,9 @@ extension FirebasePostModelX on FirebasePostModel {
 
     if (lastCommentId != null) {
       final lastCommentDoc = await firestore
-          .collection('posts')
+          .collection(EndPointConstant.posts)
           .doc(id)
-          .collection('comments')
+          .collection(EndPointConstant.comments)
           .doc(lastCommentId)
           .get();
       lastCommentPopulated = await FirebaseCommentModel.fromJson(

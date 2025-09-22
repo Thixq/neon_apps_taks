@@ -12,21 +12,18 @@ class _FeedContents extends StatelessWidget {
         : ListView.separated(
             itemBuilder: (context, index) {
               final post = posts![index];
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppSizes.small),
-                child: PostCard(
-                  commentPressed: () {
-                    CommentBottomSheet.show(
-                      context,
-                      comments: List.generate(
-                        13,
-                        (index) => PopulatedCommentModel.mock(),
-                      ),
-                    );
-                  },
+              return PostCard(
+                commentPressed: () {
+                  CommentBottomSheet.show(
+                    context,
+                    comments: List.generate(
+                      13,
+                      (index) => PopulatedCommentModel.mock(),
+                    ),
+                  );
+                },
 
-                  post: post,
-                ),
+                post: post,
               );
             },
             separatorBuilder: (context, index) {

@@ -37,6 +37,7 @@ dependencies:
   # UI
   cached_network_image: ^3.4.1
   readmore: ^3.0.0
+  shimmer: ^3.0.0
 
   # Code gen
   json_annotation: ^4.9.0

@@ -1,4 +1,7 @@
 import 'package:clone_insta/feature/init/firebase_remote_config.dart';
+import 'package:clone_insta/feature/managers/comment_managar.dart';
+import 'package:clone_insta/feature/managers/feed_manager.dart';
+import 'package:clone_insta/feature/managers/post_manager.dart';
 import 'package:clone_insta/feature/managers/profile_manager.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,7 +26,7 @@ final class DependencyManager {
     _getIt
       ..registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance)
       ..registerSingleton<FirebaseAuth>(FirebaseAuth.instance)
-      ..registerSingletonAsync(
+      ..registerSingletonAsync<ProfileManager>(
         () async {
           final manager = await ProfileManager.initialize(
             firestore: _getIt.get<FirebaseFirestore>(),
@@ -31,6 +34,17 @@ final class DependencyManager {
           );
           return manager;
         },
+      )
+      ..registerSingletonAsync<FeedManager>(
+        () async => FeedManager(firestore: _getIt.get<FirebaseFirestore>()),
+      )
+      ..registerSingletonAsync(
+        () async => PostManager(firestore: _getIt.get<FirebaseFirestore>()),
+      )
+      ..registerSingletonAsync(
+        () async => CommentManager(
+          firestore: _getIt.get<FirebaseFirestore>(),
+        ),
       )
       ..registerSingletonAsync<CloneInstaConfig>(
         () async {

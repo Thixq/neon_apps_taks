@@ -1,8 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first, document_ignores
 part of 'comment_models.dart';
 
 /// The model for a comment.
 @JsonSerializable()
-class FirebaseCommentModel extends BaseModel<FirebaseCommentModel> {
+final class FirebaseCommentModel extends BaseModel<FirebaseCommentModel> {
   /// The constructor for the FirebaseCommentModel.
   const FirebaseCommentModel({
     required super.id,
@@ -52,4 +53,18 @@ class FirebaseCommentModel extends BaseModel<FirebaseCommentModel> {
 
   @override
   bool? get stringify => true;
+
+  FirebaseCommentModel copyWith({
+    String? id,
+    String? comment,
+    DateTime? commentedAt,
+    String? userId,
+  }) {
+    return FirebaseCommentModel(
+      id: id ?? this.id,
+      comment: comment ?? this.comment,
+      commentedAt: commentedAt ?? this.commentedAt,
+      userId: userId ?? this.userId,
+    );
+  }
 }

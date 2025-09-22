@@ -5,11 +5,16 @@ import 'package:clone_insta/feature/dialog_and_bottom_sheets/comment_bottom_shee
 import 'package:clone_insta/feature/models/comment_model/comment_models.dart';
 import 'package:clone_insta/feature/models/post_model/post_models.dart';
 import 'package:clone_insta/feature/routing/app_router.gr.dart';
+import 'package:clone_insta/product/home/feed/feed_view_model/feed_state.dart';
+import 'package:clone_insta/product/home/feed/feed_view_model/feed_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 part 'feed_mixin.dart';
 part 'widget/feed_contents.dart';
 part 'widget/feed_app_bar.dart';
+part 'widget/shimmer_contens.dart';
 
 @RoutePage()
 /// FeedView
@@ -28,10 +33,22 @@ class _FeedViewState extends State<FeedView> with _FeedMixin {
       appBar: _FeedAppBar(
         addPostPressed: _navigateToCreatePost,
       ),
-      body: _FeedContents(
-        posts: List.generate(
-          15,
-          (index) => PopulatedPostModel.mock(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppSizes.small),
+        child: BlocBuilder<FeedViewModel, FeedState>(
+          builder: (context, state) {
+            if (state is FeedLoadingState) {
+              return const _ShimmerContents();
+            } else if (state is FeedLoadedState) {
+              if (state.posts.isEmpty) {
+                return const Center(child: Text('No Following Anyone'));
+              }
+              return _FeedContents(
+                posts: state.posts,
+              );
+            }
+            return const Center(child: Text('Something went wrong'));
+          },
         ),
       ),
     );

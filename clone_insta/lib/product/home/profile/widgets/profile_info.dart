@@ -60,7 +60,7 @@ class _ProfileInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${profile?.nickName} ',
+                '${profile?.fullName} ',
                 style: context.textTheme.titleSmall,
               ),
               Row(
