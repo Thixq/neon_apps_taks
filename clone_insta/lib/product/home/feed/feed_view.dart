@@ -1,9 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:clone_insta/feature/components/post_card/post_card.dart';
 import 'package:clone_insta/feature/constants/app_sizes.dart';
-import 'package:clone_insta/feature/dialog_and_bottom_sheets/comment_bottom_sheet.dart';
-import 'package:clone_insta/feature/models/comment_model/comment_models.dart';
+import 'package:clone_insta/feature/dialog_and_bottom_sheets/comment_bottom_sheet/comment_bottom_sheet.dart';
+import 'package:clone_insta/feature/init/dependency_injection/dependency_container.dart';
+import 'package:clone_insta/feature/managers/comment_managar.dart';
+import 'package:clone_insta/feature/managers/feed_manager.dart';
+import 'package:clone_insta/feature/managers/profile_manager.dart';
 import 'package:clone_insta/feature/models/post_model/post_models.dart';
+import 'package:clone_insta/feature/models/profile_model.dart';
 import 'package:clone_insta/feature/routing/app_router.gr.dart';
 import 'package:clone_insta/product/home/feed/feed_view_model/feed_state.dart';
 import 'package:clone_insta/product/home/feed/feed_view_model/feed_view_model.dart';
@@ -45,6 +49,8 @@ class _FeedViewState extends State<FeedView> with _FeedMixin {
               }
               return _FeedContents(
                 posts: state.posts,
+                profile: _profileManager.profile,
+                commentManager: _commentManager,
               );
             }
             return const Center(child: Text('Something went wrong'));

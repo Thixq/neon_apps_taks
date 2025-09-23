@@ -6,6 +6,7 @@ final class PopulatedCommentModel extends FirebaseCommentModel {
   const PopulatedCommentModel({
     required super.id,
     this.profile,
+    super.userId,
     super.comment,
     super.commentedAt,
   });

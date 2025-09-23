@@ -1,6 +1,7 @@
 import 'package:clone_insta/feature/app_logger.dart';
 import 'package:clone_insta/feature/constants/end_point_constant.dart';
 import 'package:clone_insta/feature/models/comment_model/comment_models.dart';
+import 'package:clone_insta/feature/utils/extension/extension_populated.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 /// Manages comment-related operations
@@ -53,7 +54,7 @@ final class CommentManager {
   }
 
   /// Fetch comments for a specific post
-  Future<List<FirebaseCommentModel>> fetchComments(String postId) async {
+  Future<List<PopulatedCommentModel>> fetchComments(String postId) async {
     try {
       final snapshot = await _firestore
           .collection(EndPointConstant.posts)
@@ -62,9 +63,16 @@ final class CommentManager {
           .orderBy(EndPointConstant.createdAt, descending: true)
           .get();
 
-      final comments = snapshot.docs
-          .map((doc) => FirebaseCommentModel.fromJson(doc.data()))
-          .toList();
+      final comments = await Future.wait(
+        snapshot.docs.map(
+          (doc) async {
+            final populated = await FirebaseCommentModel.fromJson(
+              doc.data(),
+            ).populateWithProfile(_firestore);
+            return populated;
+          },
+        ),
+      );
 
       AppLogger.log('✅ Fetched ${comments.length} comments for post $postId');
 

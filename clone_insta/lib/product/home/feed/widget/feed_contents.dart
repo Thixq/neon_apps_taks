@@ -1,9 +1,16 @@
 part of '../feed_view.dart';
 
 class _FeedContents extends StatelessWidget {
-  const _FeedContents({this.posts, super.key});
+  const _FeedContents({
+    required this.commentManager,
+    this.posts,
+    super.key,
+    this.profile,
+  });
 
   final List<PopulatedPostModel>? posts;
+  final ProfileModel? profile;
+  final CommentManager? commentManager;
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +23,9 @@ class _FeedContents extends StatelessWidget {
                 commentPressed: () {
                   CommentBottomSheet.show(
                     context,
-                    comments: List.generate(
-                      13,
-                      (index) => PopulatedCommentModel.mock(),
-                    ),
+                    postId: post.id,
+                    profile: profile,
+                    manager: commentManager,
                   );
                 },
 

@@ -38,10 +38,10 @@ final class DependencyManager {
       ..registerSingletonAsync<FeedManager>(
         () async => FeedManager(firestore: _getIt.get<FirebaseFirestore>()),
       )
-      ..registerSingletonAsync(
+      ..registerSingletonAsync<PostManager>(
         () async => PostManager(firestore: _getIt.get<FirebaseFirestore>()),
       )
-      ..registerSingletonAsync(
+      ..registerSingletonAsync<CommentManager>(
         () async => CommentManager(
           firestore: _getIt.get<FirebaseFirestore>(),
         ),
