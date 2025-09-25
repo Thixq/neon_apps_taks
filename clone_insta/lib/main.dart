@@ -13,7 +13,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await DependencyManager.instance.initialize();
-  final themeColor = DependencyContainer.firebaseRemoteConfig.themeColor;
+  final themeColor =
+      DependencyContainer.manager.firebaseRemoteConfig.themeColor;
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   PlatformDispatcher.instance.onError = (error, stack) {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);

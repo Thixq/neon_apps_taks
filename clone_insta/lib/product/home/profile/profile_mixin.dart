@@ -5,7 +5,7 @@ mixin _ProfileMixin on State<ProfileView> {
 
   @override
   void initState() {
-    user = DependencyContainer.profileManager;
+    user = DependencyContainer.manager.profileManager;
     super.initState();
   }
 }

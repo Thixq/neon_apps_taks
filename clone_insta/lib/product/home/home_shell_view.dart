@@ -22,8 +22,8 @@ class _HomeShellViewState extends State<HomeShellView> {
       providers: [
         BlocProvider(
           create: (context) => FeedViewModel(
-            profileManager: DependencyContainer.profileManager,
-            feedManager: DependencyContainer.feedManager,
+            profileManager: DependencyContainer.manager.profileManager,
+            feedManager: DependencyContainer.manager.feedManager,
           ),
         ),
       ],

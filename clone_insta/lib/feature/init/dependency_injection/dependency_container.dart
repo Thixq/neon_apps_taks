@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:clone_insta/feature/init/dependency_injection/dependency_manager.dart';
 import 'package:clone_insta/feature/init/firebase_remote_config.dart';
 import 'package:clone_insta/feature/managers/comment_managar.dart';
@@ -32,23 +30,69 @@ final class DependencyContainer {
   static final ImagePickerService imagePickerService =
       DependencyManager.read<ImagePickerService>();
 
-  // --- managers ---
+  // // --- managers ---
 
-  /// ProfileManager
-  static final ProfileManager profileManager =
+  // /// ProfileManager
+  // static final ProfileManager profileManager =
+  //     DependencyManager.read<ProfileManager>();
+
+  // /// FeedManager
+  // static final FeedManager feedManager = DependencyManager.read<FeedManager>();
+
+  // /// PostManager
+  // static final PostManager postManager = DependencyManager.read<PostManager>();
+
+  // /// CommentManager
+  // static final CommentManager commentManager =
+  //     DependencyManager.read<CommentManager>();
+
+  // /// FirebaseRemoteConfig
+  // static final CloneInstaConfig firebaseRemoteConfig =
+  //     DependencyManager.read<CloneInstaConfig>();
+
+  static DependencyContainerManager get manager =>
+      DependencyContainerManager._();
+
+  static DependencyContainerService get service =>
+      DependencyContainerService._();
+}
+
+final class DependencyContainerService {
+  DependencyContainerService._();
+
+  /// auth
+  final FirebaseAuth auth = DependencyManager.read<FirebaseAuth>();
+
+  /// firestore
+  final FirebaseFirestore firestore =
+      DependencyManager.read<FirebaseFirestore>();
+
+  /// storage
+  final FirebaseStorage storage = DependencyManager.read<FirebaseStorage>();
+
+  /// image picker
+  final ImagePickerService imagePickerService =
+      DependencyManager.read<ImagePickerService>();
+}
+
+/// Dependency container manager
+final class DependencyContainerManager {
+  DependencyContainerManager._();
+
+  final ProfileManager profileManager =
       DependencyManager.read<ProfileManager>();
 
   /// FeedManager
-  static final FeedManager feedManager = DependencyManager.read<FeedManager>();
+  final FeedManager feedManager = DependencyManager.read<FeedManager>();
 
   /// PostManager
-  static final PostManager postManager = DependencyManager.read<PostManager>();
+  final PostManager postManager = DependencyManager.read<PostManager>();
 
   /// CommentManager
-  static final CommentManager commentManager =
+  final CommentManager commentManager =
       DependencyManager.read<CommentManager>();
 
   /// FirebaseRemoteConfig
-  static final CloneInstaConfig firebaseRemoteConfig =
+  final CloneInstaConfig firebaseRemoteConfig =
       DependencyManager.read<CloneInstaConfig>();
 }

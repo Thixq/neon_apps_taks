@@ -34,7 +34,7 @@ mixin _SignUpMixin on State<SignUpView> {
     _passwordController = TextEditingController();
     _nameController = TextEditingController();
     _nickNameController = TextEditingController();
-    _profileManager = DependencyContainer.profileManager;
+    _profileManager = DependencyContainer.manager.profileManager;
     super.initState();
   }
 

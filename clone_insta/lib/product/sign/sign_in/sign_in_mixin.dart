@@ -27,7 +27,7 @@ mixin _SignInMixin on State<SignInView> {
     _formKey = GlobalKey<FormState>();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
-    _profileManager = DependencyContainer.profileManager;
+    _profileManager = DependencyContainer.manager.profileManager;
     super.initState();
   }
 

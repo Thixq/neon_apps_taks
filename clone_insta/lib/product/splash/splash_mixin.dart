@@ -8,7 +8,7 @@ mixin _SplashMixin on State<SplashView> {
   }
 
   void _routing() {
-    if (DependencyContainer.profileManager.profile == null) {
+    if (DependencyContainer.manager.profileManager.profile == null) {
       context.router.replaceAll([const SignShellRoute()]);
     } else {
       context.router.replaceAll([const HomeShellRoute()]);

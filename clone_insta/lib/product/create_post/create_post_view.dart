@@ -1,11 +1,9 @@
 import 'dart:io';
 import 'package:auto_route/annotations.dart';
-import 'package:clone_insta/feature/app_logger.dart';
 import 'package:clone_insta/feature/constants/app_sizes.dart';
 import 'package:clone_insta/feature/extensions/context_theme_extension.dart';
 import 'package:clone_insta/feature/extensions/num_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hl_image_picker_ios/hl_image_picker_ios.dart';
 
 part 'create_post_mixin.dart';

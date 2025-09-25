@@ -4,7 +4,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:clone_insta/feature/controllers/upload_task_controller.dart';
-import 'package:clone_insta/feature/models/upload_result_model.dart';
+import 'package:clone_insta/feature/models/upload_models/upload_result_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:clone_insta/feature/app_logger.dart';
 
