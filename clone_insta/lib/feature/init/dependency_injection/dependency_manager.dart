@@ -3,9 +3,12 @@ import 'package:clone_insta/feature/managers/comment_managar.dart';
 import 'package:clone_insta/feature/managers/feed_manager.dart';
 import 'package:clone_insta/feature/managers/post_manager.dart';
 import 'package:clone_insta/feature/managers/profile_manager.dart';
+import 'package:clone_insta/feature/services/image_picker_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hl_image_picker_ios/hl_image_picker_ios.dart';
 
 /// Dependency manager
 final class DependencyManager {
@@ -18,14 +21,14 @@ final class DependencyManager {
 
   /// Initialize dependency injection
   Future<void> initialize() async {
-    await _configure();
+    await _serviceConfigure();
+    await _managerConfigure();
+
     await _getIt.allReady();
   }
 
-  Future<void> _configure() async {
+  Future<void> _managerConfigure() async {
     _getIt
-      ..registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance)
-      ..registerSingleton<FirebaseAuth>(FirebaseAuth.instance)
       ..registerSingletonAsync<ProfileManager>(
         () async {
           final manager = await ProfileManager.initialize(
@@ -53,6 +56,16 @@ final class DependencyManager {
           return config;
         },
       );
+  }
+
+  Future<void> _serviceConfigure() async {
+    _getIt
+      ..registerSingleton<ImagePickerService>(
+        ImagePickerService(picker: HLImagePickerIOS()),
+      )
+      ..registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance)
+      ..registerSingleton<FirebaseAuth>(FirebaseAuth.instance)
+      ..registerSingleton<FirebaseStorage>(FirebaseStorage.instance);
   }
 
   /// Get dependency

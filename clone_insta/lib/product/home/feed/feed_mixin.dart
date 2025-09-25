@@ -10,10 +10,10 @@ mixin _FeedMixin on State<FeedView> {
 
   @override
   void initState() {
-    _getFeed();
     _profileManager = DependencyContainer.profileManager;
     _feedManager = DependencyContainer.feedManager;
     _commentManager = DependencyContainer.commentManager;
+    _getFeed();
     super.initState();
   }
 

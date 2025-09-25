@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:auto_route/annotations.dart';
+import 'package:clone_insta/feature/app_logger.dart';
 import 'package:clone_insta/feature/constants/app_sizes.dart';
 import 'package:clone_insta/feature/extensions/context_theme_extension.dart';
 import 'package:clone_insta/feature/extensions/num_extension.dart';
@@ -29,13 +30,6 @@ class _CreatePostViewState extends State<CreatePostView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            loading = !loading;
-          });
-        },
-      ),
       appBar: AppBar(
         title: const Text('Create Post'),
       ),
@@ -46,7 +40,7 @@ class _CreatePostViewState extends State<CreatePostView>
             spacing: AppSizes.large,
             children: [
               _PostImagePicker(
-                onTap: _pick,
+                onTap: () {},
                 pickedItem: _pickedItem,
               ),
               const _CaptionTextField(),
