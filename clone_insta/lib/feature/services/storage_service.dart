@@ -3,17 +3,20 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:clone_insta/feature/app_logger.dart';
 import 'package:clone_insta/feature/controllers/upload_task_controller.dart';
 import 'package:clone_insta/feature/models/upload_models/upload_result_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:clone_insta/feature/app_logger.dart';
 
+/// Manages asynchronous data upload operations to Firebase Storage.
 final class StorageService {
+  /// Creates a new instance of [StorageService].
   StorageService({required FirebaseStorage storage}) : _storage = storage;
   final FirebaseStorage _storage;
 
   Reference _ref(String path) => _storage.ref().child(path);
 
+  /// Starts the file upload process
   UploadTaskController startUpload({
     required String path,
     required File file,
@@ -50,6 +53,7 @@ final class StorageService {
     return UploadTaskController(task: task, result: resultFuture);
   }
 
+  /// Uploads a file to Firebase Storage
   Future<UploadResultModel> uploadFile({
     required String path,
     required File file,
@@ -78,6 +82,7 @@ final class StorageService {
     }
   }
 
+  /// Uploads bytes to Firebase Storage
   Future<UploadResultModel> uploadData({
     required String path,
     required Uint8List data,
@@ -106,8 +111,10 @@ final class StorageService {
     }
   }
 
+  /// Fetches the download URL for a file
   Future<String> getDownloadUrl(String path) => _ref(path).getDownloadURL();
 
+  /// Deletes a file
   Future<void> deleteFile(String path) async {
     try {
       await _ref(path).delete();
@@ -118,6 +125,7 @@ final class StorageService {
     }
   }
 
+  /// Lists files
   Future<ListResult> listFiles(
     String path, {
     int maxResults = 100,
@@ -129,6 +137,7 @@ final class StorageService {
     );
   }
 
+  /// Downloads a file
   Future<void> downloadToFile(
     String path,
     File outFile, {

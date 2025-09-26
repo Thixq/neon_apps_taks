@@ -5,7 +5,9 @@ import 'package:clone_insta/feature/models/upload_models/upload_result_model.dar
 import 'package:clone_insta/feature/utils/enums/upload_status.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+/// Controls data uploads to Firebase Storage.
 class UploadTaskController {
+  /// Constructor
   UploadTaskController({
     required this.task,
     required this.result,
@@ -33,12 +35,16 @@ class UploadTaskController {
     );
   }
 
+  /// A class which indicates an on-going upload task.
   final UploadTask task;
+
+  /// A future which resolves to the result of the upload.
   final Future<UploadResultModel> result;
 
   late final StreamController<UploadStatus> _statusController;
   late final StreamSubscription<TaskSnapshot> _snapshotSub;
 
+  /// Streams the loading process.
   Stream<double> progressStream() => task.snapshotEvents.map((s) {
     final total = s.totalBytes;
     final transferred = s.bytesTransferred;
@@ -46,8 +52,10 @@ class UploadTaskController {
     return transferred / total;
   });
 
+  /// Streams the upload status.
   Stream<UploadStatus> statusStream() => _statusController.stream;
 
+  /// Pauses the upload.
   Future<void> pause() async {
     try {
       final res = await task.pause();
@@ -57,6 +65,7 @@ class UploadTaskController {
     }
   }
 
+  /// Resumes the upload.
   Future<void> resume() async {
     try {
       final res = await task.resume();
@@ -66,6 +75,7 @@ class UploadTaskController {
     }
   }
 
+  /// Cancels the upload.
   Future<void> cancel() async {
     try {
       await task.cancel();
@@ -74,6 +84,7 @@ class UploadTaskController {
     }
   }
 
+  /// Disposes the controller.
   void dispose() {
     _snapshotSub.cancel();
     _statusController.close();

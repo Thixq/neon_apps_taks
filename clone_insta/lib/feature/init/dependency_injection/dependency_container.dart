@@ -13,50 +13,16 @@ import 'package:firebase_storage/firebase_storage.dart';
 final class DependencyContainer {
   DependencyContainer._();
 
-  // --- services ---
-
-  /// auth
-  static final FirebaseAuth auth = DependencyManager.read<FirebaseAuth>();
-
-  /// firestore
-  static final FirebaseFirestore firestore =
-      DependencyManager.read<FirebaseFirestore>();
-
-  /// storage
-  static final FirebaseStorage storage =
-      DependencyManager.read<FirebaseStorage>();
-
-  /// image picker
-  static final ImagePickerService imagePickerService =
-      DependencyManager.read<ImagePickerService>();
-
-  // // --- managers ---
-
-  // /// ProfileManager
-  // static final ProfileManager profileManager =
-  //     DependencyManager.read<ProfileManager>();
-
-  // /// FeedManager
-  // static final FeedManager feedManager = DependencyManager.read<FeedManager>();
-
-  // /// PostManager
-  // static final PostManager postManager = DependencyManager.read<PostManager>();
-
-  // /// CommentManager
-  // static final CommentManager commentManager =
-  //     DependencyManager.read<CommentManager>();
-
-  // /// FirebaseRemoteConfig
-  // static final CloneInstaConfig firebaseRemoteConfig =
-  //     DependencyManager.read<CloneInstaConfig>();
-
+  /// Managers
   static DependencyContainerManager get manager =>
       DependencyContainerManager._();
 
+  /// Services
   static DependencyContainerService get service =>
       DependencyContainerService._();
 }
 
+/// Dependency container service
 final class DependencyContainerService {
   DependencyContainerService._();
 
@@ -79,6 +45,7 @@ final class DependencyContainerService {
 final class DependencyContainerManager {
   DependencyContainerManager._();
 
+  /// ProfileManager
   final ProfileManager profileManager =
       DependencyManager.read<ProfileManager>();
 

@@ -8,14 +8,14 @@ import 'package:clone_insta/feature/utils/enums/upload_status.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:uuid/uuid.dart';
 
+/// Manages asynchronous data upload operations to Firebase Storage.
 final class UploadManager {
+  /// Constructor
   UploadManager({
     required StorageService storageService,
-    this.maxConcurrentUploads = 3,
   }) : _storage = storageService;
 
   final StorageService _storage;
-  final int maxConcurrentUploads;
 
   final _uuid = const Uuid();
 
@@ -25,11 +25,13 @@ final class UploadManager {
   // broadcast stream of current uploads snapshot (copy of list)
   final _uploadsController = StreamController<List<ManagedUpload>>.broadcast();
 
+  /// Stream of current uploads
   Stream<List<ManagedUpload>> get uploadsStream => _uploadsController.stream;
 
+  /// Current uploads
   List<ManagedUpload> get currentUploads => _uploads.values.toList();
 
-  /// Başlat — path senin üretmen iyidir (örn uploads/users/{uid}/...)
+  /// Starts the file upload process
   ManagedUpload startUpload({
     required String path,
     required File file,
@@ -58,8 +60,10 @@ final class UploadManager {
     return mu;
   }
 
+  /// Returns upload by id
   ManagedUpload? getUpload(String id) => _uploads[id];
 
+  /// Pauses upload
   Future<void> pauseUpload(String id) async {
     final m = _uploads[id];
     if (m == null) return;
@@ -73,6 +77,7 @@ final class UploadManager {
     }
   }
 
+  /// Resumes upload
   Future<void> resumeUpload(String id) async {
     final m = _uploads[id];
     if (m == null) return;
@@ -86,6 +91,7 @@ final class UploadManager {
     }
   }
 
+  /// Cancels upload
   Future<void> cancelUpload(String id) async {
     final m = _uploads[id];
     if (m == null) return;
@@ -118,6 +124,7 @@ final class UploadManager {
     );
   }
 
+  /// Disposes the manager
   void dispose() {
     for (final u in _uploads.values) {
       // optionally cancel/listen cleanup
