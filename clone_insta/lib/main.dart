@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:clone_insta/feature/init/dependency_injection/dependency_container.dart';
 import 'package:clone_insta/feature/init/dependency_injection/dependency_manager.dart';
 import 'package:clone_insta/feature/routing/app_router.dart';
@@ -34,6 +33,7 @@ class _App extends StatelessWidget {
 
     return MaterialApp.router(
       routerConfig: appRoute.config(),
+
       darkTheme: NeonTheme.dark(seedColor: seedColor),
       theme: NeonTheme.light(seedColor: seedColor),
     );

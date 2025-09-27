@@ -7,9 +7,22 @@ const String _followers = 'Followers';
 const String _following = 'Following';
 
 class _ProfileInfo extends StatelessWidget {
-  const _ProfileInfo({this.profile});
+  const _ProfileInfo({
+    super.key,
+    this.profileImage,
+    this.fullName,
+    this.nickName,
+    this.posts,
+    this.followers,
+    this.following,
+  });
 
-  final ProfileModel? profile;
+  final String? profileImage;
+  final String? fullName;
+  final String? nickName;
+  final int? posts;
+  final int? followers;
+  final int? following;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +65,7 @@ class _ProfileInfo extends StatelessWidget {
       children: [
         ProfileAvatar(
           size: AppSizes.extraLarge * 3,
-          imageUrl: profile?.profileImage,
+          imageUrl: profileImage,
         ),
         Expanded(
           child: Column(
@@ -60,7 +73,7 @@ class _ProfileInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${profile?.fullName} ',
+                '$fullName ',
                 style: context.textTheme.titleSmall,
               ),
               Row(
@@ -68,19 +81,17 @@ class _ProfileInfo extends StatelessWidget {
                 children: [
                   _buildInfoText(
                     context,
-                    title: '${profile?.posts?.toCompactString()}',
+                    title: '${posts?.toCompactString()}',
                     text: _posts,
                   ),
                   _buildInfoText(
                     context,
-                    title:
-                        '${profile?.followers?.toCompactString(decimalDigits: 2)}',
+                    title: '${followers?.toCompactString(decimalDigits: 2)}',
                     text: _followers,
                   ),
                   _buildInfoText(
                     context,
-                    title:
-                        '${profile?.following?.toCompactString(decimalDigits: 1)}',
+                    title: '${following?.toCompactString(decimalDigits: 1)}',
                     text: _following,
                   ),
                 ],

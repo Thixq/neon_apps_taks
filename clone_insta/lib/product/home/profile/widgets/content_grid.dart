@@ -3,7 +3,7 @@ part of '../profile_view.dart';
 class _ContentGrid extends StatelessWidget {
   const _ContentGrid({super.key, this.contents});
 
-  final List<PopulatedPostModel>? contents;
+  final List<PopulatedPostModel?>? contents;
 
   @override
   Widget build(BuildContext context) {

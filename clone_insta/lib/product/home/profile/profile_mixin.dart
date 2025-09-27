@@ -6,6 +6,18 @@ mixin _ProfileMixin on State<ProfileView> {
   @override
   void initState() {
     user = DependencyContainer.manager.profileManager;
+    _getPosts();
     super.initState();
+  }
+
+  Future<void> _signOut(BuildContext context) async {
+    await user.signOut();
+    if (context.mounted) {
+      await context.router.replaceAll([const SignShellRoute()]);
+    }
+  }
+
+  Future<void> _getPosts() async {
+    await context.read<ProfileViewModel>().getPosts();
   }
 }

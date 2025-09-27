@@ -7,8 +7,11 @@ import 'package:clone_insta/feature/extensions/num_extension.dart';
 import 'package:clone_insta/feature/init/dependency_injection/dependency_container.dart';
 import 'package:clone_insta/feature/managers/profile_manager.dart';
 import 'package:clone_insta/feature/models/post_model/post_models.dart';
-import 'package:clone_insta/feature/models/profile_model.dart';
+import 'package:clone_insta/feature/routing/app_router.gr.dart';
+import 'package:clone_insta/product/home/profile/view_model/profile_view_model.dart';
+import 'package:clone_insta/product/home/profile/view_model/profile_view_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'profile_mixin.dart';
 part 'widgets/profile_info.dart';
@@ -31,20 +34,51 @@ class _ProfileViewState extends State<ProfileView> with _ProfileMixin {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
+        actions: [
+          IconButton(
+            onPressed: () async => _signOut(context),
+            icon: const Icon(Icons.logout),
+          ),
+        ],
         title: Text(user.profile?.nickName ?? 'null'),
       ),
       body: Column(
         children: [
-          _ProfileInfo(
-            profile: user.profile,
-          ),
-          Expanded(
-            child: _ProfileContent(
-              posts: List.generate(10, (index) => PopulatedPostModel.mock()),
-            ),
-          ),
+          _buildProfileInfo(),
+          _buildContent(),
         ],
       ),
+    );
+  }
+
+  Expanded _buildContent() {
+    return Expanded(
+      child: BlocBuilder<ProfileViewModel, ProfileViewState>(
+        builder: (context, state) {
+          return _ProfileContent(
+            postsLoading: state.postsState is ProfileViewPostStateLoading,
+            posts: (state.postsState is ProfileViewPostStateLoaded)
+                ? (state.postsState as ProfileViewPostStateLoaded).posts
+                : [],
+          );
+        },
+      ),
+    );
+  }
+
+  BlocBuilder<ProfileViewModel, ProfileViewState> _buildProfileInfo() {
+    return BlocBuilder<ProfileViewModel, ProfileViewState>(
+      builder: (context, state) {
+        return _ProfileInfo(
+          profileImage: user.profile?.profileImage,
+          fullName: user.profile?.fullName,
+          followers: user.profile?.followers,
+          following: user.profile?.following,
+          posts: state.postsState is ProfileViewPostStateLoaded
+              ? (state.postsState as ProfileViewPostStateLoaded).posts?.length
+              : null,
+        );
+      },
     );
   }
 }
