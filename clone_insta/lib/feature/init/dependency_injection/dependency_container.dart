@@ -37,7 +37,7 @@ final class DependencyContainerService {
   final FirebaseStorage storage = DependencyManager.read<FirebaseStorage>();
 
   /// image picker
-  final ImagePickerService imagePickerService =
+  final ImagePickerService imagePicker =
       DependencyManager.read<ImagePickerService>();
 }
 

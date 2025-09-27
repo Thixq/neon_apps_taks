@@ -14,13 +14,13 @@ final class PostManager {
   /// Create a new post
   Future<String?> createPost(FirebasePostModel post) async {
     try {
-      final doc = _firestore.collection(EndPointConstant.posts).doc();
-      final data = post.toJson()..['id'] = doc.id;
+      final docRef = _firestore.collection(EndPointConstant.posts).doc();
+      final data = post.toJson()..['id'] = docRef.id;
 
-      await doc.set(data);
+      await docRef.set(data);
 
-      AppLogger.log('✅ Post created successfully with id: ${doc.id}');
-      return doc.id;
+      AppLogger.log('✅ Post created successfully with id: ${docRef.id}');
+      return docRef.id;
     } catch (e, stack) {
       AppLogger.error(e, stack, reason: '❌ Error creating post');
       rethrow;

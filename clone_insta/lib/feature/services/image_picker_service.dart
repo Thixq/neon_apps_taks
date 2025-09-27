@@ -51,13 +51,14 @@ final class ImagePickerService {
         stackTrace,
         reason: '❌ PlatformException while opening image picker',
       );
+      return null;
     } catch (error, stackTrace) {
       AppLogger.error(
         error,
         stackTrace,
         reason: '❌ Unexpected error while opening image picker',
       );
+      return null;
     }
-    return null;
   }
 }

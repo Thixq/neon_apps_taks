@@ -16,6 +16,9 @@ class _CaptionTextField extends StatelessWidget {
     return TextField(
       textInputAction: TextInputAction.newline,
       keyboardType: TextInputType.multiline,
+      onTapUpOutside: (event) {
+        FocusScope.of(context).unfocus();
+      },
       onChanged: onChanged,
       controller: controller,
       maxLines: 4,

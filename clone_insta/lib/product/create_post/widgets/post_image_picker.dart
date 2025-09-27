@@ -4,7 +4,7 @@ class _PostImagePicker extends StatelessWidget {
   const _PostImagePicker({super.key, this.onTap, this.pickedItem});
 
   final VoidCallback? onTap;
-  final HLPickerItem? pickedItem;
+  final ImagePickItem? pickedItem;
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +21,10 @@ class _PostImagePicker extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(AppSizes.large),
           ),
-          child: pickedItem == null
+          child: pickedItem?.file == null
               ? null
               : Image.file(
-                  File(pickedItem!.path),
+                  pickedItem!.file!,
                   fit: BoxFit.contain,
                 ),
         ),

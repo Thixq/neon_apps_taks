@@ -55,9 +55,7 @@ final class SelectedState extends PhotoPickerState {
 
   @override
   List<Object?> get props => [
-    photo.id,
-    photo.path,
-    photo.mimeType,
+    photo,
   ];
 }
 
@@ -77,28 +75,16 @@ final class IdleState extends UploadState {
   const IdleState();
 }
 
-/// Upload is in progress
+/// Uploading State
 final class UploadingState extends UploadState {
-  /// Upload is in progress
-  const UploadingState({this.progress = 0.0});
-
-  /// Upload progress
-  final double progress;
-
-  @override
-  List<Object?> get props => [progress];
+  /// Uploading State
+  const UploadingState();
 }
 
 /// Upload finished successfully
 final class UploadedState extends UploadState {
   /// Upload finished successfully
-  const UploadedState(this.url);
-
-  /// Uploaded URL
-  final String url;
-
-  @override
-  List<Object?> get props => [url];
+  const UploadedState();
 }
 
 /// Upload failed with an error
