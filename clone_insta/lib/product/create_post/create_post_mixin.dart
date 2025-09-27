@@ -17,7 +17,7 @@ mixin _CreatePostViewMixin on State<CreatePostView> {
   Future<void> _createPost(BuildContext context) async {
     final caption = _captionController.text;
     await context.read<CreatePostViewModel>().createPost(caption: caption);
-    if (mounted) context.router.pop();
+    if (context.mounted) context.router.pop();
   }
 
   Future<void> _pickImage(BuildContext context) async {
