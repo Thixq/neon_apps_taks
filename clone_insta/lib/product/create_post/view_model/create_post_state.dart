@@ -5,8 +5,8 @@ import 'package:equatable/equatable.dart';
 final class CreatePostState extends Equatable {
   /// Default state: no photo selected, no upload in progress
   const CreatePostState({
-    this.picker = const Unselected(),
-    this.upload = const Idle(),
+    this.picker = const UnselectedState(),
+    this.upload = const IdleState(),
   });
 
   /// Current photo picker state (selected/unselected)
@@ -40,15 +40,15 @@ sealed class PhotoPickerState extends Equatable {
 }
 
 /// No photo selected
-final class Unselected extends PhotoPickerState {
+final class UnselectedState extends PhotoPickerState {
   /// No photo selected
-  const Unselected();
+  const UnselectedState();
 }
 
 /// A photo has been selected
-final class Selected extends PhotoPickerState {
+final class SelectedState extends PhotoPickerState {
   /// A photo has been selected
-  const Selected(this.photo);
+  const SelectedState(this.photo);
 
   /// Selected photo
   final ImagePickItem photo;
@@ -72,15 +72,15 @@ sealed class UploadState extends Equatable {
 }
 
 /// Upload not started yet
-final class Idle extends UploadState {
+final class IdleState extends UploadState {
   /// Upload not started yet
-  const Idle();
+  const IdleState();
 }
 
 /// Upload is in progress
-final class Uploading extends UploadState {
+final class UploadingState extends UploadState {
   /// Upload is in progress
-  const Uploading({this.progress = 0.0});
+  const UploadingState({this.progress = 0.0});
 
   /// Upload progress
   final double progress;
@@ -90,9 +90,9 @@ final class Uploading extends UploadState {
 }
 
 /// Upload finished successfully
-final class Uploaded extends UploadState {
+final class UploadedState extends UploadState {
   /// Upload finished successfully
-  const Uploaded(this.url);
+  const UploadedState(this.url);
 
   /// Uploaded URL
   final String url;
@@ -102,9 +102,9 @@ final class Uploaded extends UploadState {
 }
 
 /// Upload failed with an error
-final class UploadError extends UploadState {
+final class UploadErrorState extends UploadState {
   /// Upload failed with an error
-  const UploadError(this.message);
+  const UploadErrorState(this.message);
 
   /// Error message
   final String message;

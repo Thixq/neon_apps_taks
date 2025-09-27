@@ -3,9 +3,7 @@ import 'package:clone_insta/feature/managers/comment_managar.dart';
 import 'package:clone_insta/feature/managers/feed_manager.dart';
 import 'package:clone_insta/feature/managers/post_manager.dart';
 import 'package:clone_insta/feature/managers/profile_manager.dart';
-import 'package:clone_insta/feature/managers/upload_manager.dart';
 import 'package:clone_insta/feature/services/image_picker_service.dart';
-import 'package:clone_insta/feature/services/storage_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -56,9 +54,6 @@ final class DependencyManager {
           await config.initialize();
           return config;
         },
-      )
-      ..registerSingletonAsync(
-        () async => UploadManager(storageService: _getIt.get<StorageService>()),
       );
   }
 
@@ -69,10 +64,7 @@ final class DependencyManager {
       )
       ..registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance)
       ..registerSingleton<FirebaseAuth>(FirebaseAuth.instance)
-      ..registerSingleton<FirebaseStorage>(FirebaseStorage.instance)
-      ..registerSingleton<StorageService>(
-        StorageService(storage: FirebaseStorage.instance),
-      );
+      ..registerSingleton<FirebaseStorage>(FirebaseStorage.instance);
   }
 
   /// Get dependency
