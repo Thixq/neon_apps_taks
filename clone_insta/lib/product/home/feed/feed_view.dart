@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:clone_insta/feature/components/post_card/post_card.dart';
 import 'package:clone_insta/feature/constants/app_sizes.dart';
 import 'package:clone_insta/feature/dialog_and_bottom_sheets/comment_bottom_sheet/comment_bottom_sheet.dart';
+import 'package:clone_insta/feature/dialog_and_bottom_sheets/friendship_bottom_sheet/friendship_bottom_sheet.dart';
 import 'package:clone_insta/feature/init/dependency_injection/dependency_container.dart';
 import 'package:clone_insta/feature/managers/comment_managar.dart';
 import 'package:clone_insta/feature/managers/profile_manager.dart';

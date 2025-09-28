@@ -12,7 +12,9 @@ class _FeedAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: const Text('Neon Academy Social'),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            FriendshipBottomSheet.show(context);
+          },
           icon: const Icon(Icons.person),
         ),
         IconButton(
