@@ -2,7 +2,7 @@ import 'package:clone_insta/feature/app_logger.dart';
 import 'package:clone_insta/feature/components/profile_avatar.dart';
 import 'package:clone_insta/feature/constants/app_sizes.dart';
 import 'package:clone_insta/feature/extensions/date_time_extension.dart';
-import 'package:clone_insta/feature/managers/comment_managar.dart';
+import 'package:clone_insta/feature/managers/comment_manager.dart';
 import 'package:clone_insta/feature/models/comment_model/comment_models.dart';
 import 'package:clone_insta/feature/models/profile_model.dart';
 import 'package:flutter/material.dart';
