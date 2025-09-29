@@ -1,7 +1,7 @@
 import 'package:clone_insta/feature/app_logger.dart';
 import 'package:clone_insta/feature/constants/end_point_constant.dart';
 import 'package:clone_insta/feature/models/post_model/post_models.dart';
-import 'package:clone_insta/feature/utils/enums/relationship_enums.dart';
+
 import 'package:clone_insta/feature/utils/extension/extension_populated.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

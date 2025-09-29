@@ -7,6 +7,7 @@ mixin _ProfileMixin on State<ProfileView> {
   void initState() {
     user = DependencyContainer.manager.profileManager;
     _getPosts();
+    _getStatus();
     super.initState();
   }
 
@@ -19,5 +20,9 @@ mixin _ProfileMixin on State<ProfileView> {
 
   Future<void> _getPosts() async {
     await context.read<ProfileViewModel>().getPosts();
+  }
+
+  Future<void> _getStatus() async {
+    await context.read<ProfileViewModel>().getStatus();
   }
 }

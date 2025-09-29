@@ -91,18 +91,17 @@ final class RelationshipManager {
           .doc(docId);
 
       await _firestore.runTransaction((txn) async {
-        txn.set(
-          relationshipRef.collection('sides').doc(currentUserId),
-          {
-            'id': currentUserId, // ✅ side ID field
-            'followStatus': FollowStatus.none.name,
-            'updatedAt': FieldValue.serverTimestamp(),
-          },
-          SetOptions(merge: true),
-        );
-
-        // Clear seed cache
         txn
+          ..set(
+            relationshipRef.collection('sides').doc(currentUserId),
+            {
+              'id': currentUserId, // ✅ side ID field
+              'followStatus': FollowStatus.none.name,
+              'updatedAt': FieldValue.serverTimestamp(),
+            },
+            SetOptions(merge: true),
+          )
+          // Clear seed cache
           ..delete(
             _firestore
                 .collection(EndPointConstant.users)
@@ -234,22 +233,22 @@ final class RelationshipManager {
   }
 
   /// Get followers (fast via seed)
-  Stream<List<String>> getFollowers(String userId) {
-    return _firestore
+  Future<List<String>> getFollowers(String userId) async {
+    final followers = await _firestore
         .collection(EndPointConstant.users)
         .doc(userId)
         .collection(EndPointConstant.followersSeed)
-        .snapshots()
-        .map((snapshot) => snapshot.docs.map((d) => d.id).toList());
+        .get();
+    return followers.docs.map((d) => d.id).toList();
   }
 
   /// Get following (fast via seed)
-  Stream<List<String>> getFollowing(String userId) {
-    return _firestore
+  Future<List<String>> getFollowing(String userId) async {
+    final following = await _firestore
         .collection(EndPointConstant.users)
         .doc(userId)
         .collection(EndPointConstant.followingSeed)
-        .snapshots()
-        .map((snapshot) => snapshot.docs.map((d) => d.id).toList());
+        .get();
+    return following.docs.map((d) => d.id).toList();
   }
 }

@@ -4,6 +4,7 @@ import 'package:clone_insta/feature/managers/comment_manager.dart';
 import 'package:clone_insta/feature/managers/feed_manager.dart';
 import 'package:clone_insta/feature/managers/post_manager.dart';
 import 'package:clone_insta/feature/managers/profile_manager.dart';
+import 'package:clone_insta/feature/managers/relationship_manager.dart';
 import 'package:clone_insta/feature/managers/users_manager.dart';
 import 'package:clone_insta/feature/orchestration/friendship_orchestration.dart';
 import 'package:clone_insta/feature/services/image_picker_service.dart';
@@ -71,6 +72,10 @@ final class DependencyContainerManager {
   /// FirebaseRemoteConfig
   final CloneInstaConfig firebaseRemoteConfig =
       DependencyManager.read<CloneInstaConfig>();
+
+  /// RelationshipManager
+  final RelationshipManager relationshipManager =
+      DependencyManager.read<RelationshipManager>();
 }
 
 /// Dependency container orchestration

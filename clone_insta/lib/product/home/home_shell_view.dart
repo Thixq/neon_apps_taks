@@ -32,6 +32,8 @@ class _HomeShellViewState extends State<HomeShellView> {
             profileManager: DependencyContainer.manager.profileManager,
             postManager: DependencyContainer.manager.postManager,
             firestoreService: DependencyContainer.service.firestore,
+            relationshipManager:
+                DependencyContainer.manager.relationshipManager,
           ),
         ),
       ],

@@ -4,22 +4,75 @@ import 'package:equatable/equatable.dart';
 /// State for the "profile" flow
 final class ProfileViewState extends Equatable {
   /// Constructor
-  const ProfileViewState({required this.postsState});
+  const ProfileViewState({
+    required this.postsState,
+    required this.profileState,
+  });
 
   /// Posts state
   final ProfileViewPotsState postsState;
 
+  /// Profile state
+  final ProfileViewContentState profileState;
+
   @override
-  List<Object?> get props => [postsState];
+  List<Object?> get props => [postsState, profileState];
 
   /// copy with
   ProfileViewState copyWith({
     ProfileViewPotsState? postsState,
+    ProfileViewContentState? profileState,
   }) {
     return ProfileViewState(
       postsState: postsState ?? this.postsState,
+      profileState: profileState ?? this.profileState,
     );
   }
+}
+
+/// Profile info state
+sealed class ProfileViewContentState extends Equatable {
+  /// Constructor
+  const ProfileViewContentState();
+
+  @override
+  List<Object?> get props => [];
+}
+
+/// Initial state
+final class ProfileViewContentStateInitial extends ProfileViewContentState {
+  /// Constructor
+  const ProfileViewContentStateInitial();
+}
+
+/// Loading state
+final class ProfileViewContentStateLoading extends ProfileViewContentState {
+  /// Constructor
+  const ProfileViewContentStateLoading();
+}
+
+/// Loaded state
+final class ProfileViewContentStateLoaded extends ProfileViewContentState {
+  /// Constructor
+  const ProfileViewContentStateLoaded({
+    required this.followers,
+    required this.following,
+  });
+
+  final int followers;
+  final int following;
+
+  @override
+  List<Object?> get props => [...super.props, followers, following];
+}
+
+/// Error state
+final class ProfileViewContentStateError extends ProfileViewContentState {
+  /// Constructor
+  const ProfileViewContentStateError({required this.errorMessage});
+
+  /// Error message
+  final String errorMessage;
 }
 
 /// Posts state

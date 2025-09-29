@@ -1,5 +1,6 @@
 import 'package:clone_insta/feature/managers/post_manager.dart';
 import 'package:clone_insta/feature/managers/profile_manager.dart';
+import 'package:clone_insta/feature/managers/relationship_manager.dart';
 import 'package:clone_insta/feature/models/post_model/post_models.dart';
 import 'package:clone_insta/feature/utils/extension/extension_populated.dart';
 import 'package:clone_insta/product/home/profile/view_model/profile_view_state.dart';
@@ -13,14 +14,22 @@ final class ProfileViewModel extends Cubit<ProfileViewState> {
     required ProfileManager profileManager,
     required PostManager postManager,
     required FirebaseFirestore firestoreService,
+    required RelationshipManager relationshipManager,
   }) : _profileManager = profileManager,
        _postManager = postManager,
        _firestoreService = firestoreService,
-       super(const ProfileViewState(postsState: ProfileViewPostStateInitial()));
+       _relationshipManager = relationshipManager,
+       super(
+         const ProfileViewState(
+           postsState: ProfileViewPostStateInitial(),
+           profileState: ProfileViewContentStateInitial(),
+         ),
+       );
 
   final ProfileManager _profileManager;
   final PostManager _postManager;
   final FirebaseFirestore _firestoreService;
+  final RelationshipManager _relationshipManager;
 
   /// User get posts
   Future<void> getPosts() async {
@@ -40,6 +49,25 @@ final class ProfileViewModel extends Cubit<ProfileViewState> {
       state.copyWith(
         postsState: ProfileViewPostStateLoaded(
           posts: [...?oldPosts, ...populetedPosts],
+        ),
+      ),
+    );
+  }
+
+  /// Get followers and following
+  Future<void> getStatus() async {
+    emit(state.copyWith(profileState: const ProfileViewContentStateLoading()));
+    final followers = await _relationshipManager.getFollowers(
+      _profileManager.profile!.id,
+    );
+    final following = await _relationshipManager.getFollowing(
+      _profileManager.profile!.id,
+    );
+    emit(
+      state.copyWith(
+        profileState: ProfileViewContentStateLoaded(
+          followers: followers.length,
+          following: following.length,
         ),
       ),
     );

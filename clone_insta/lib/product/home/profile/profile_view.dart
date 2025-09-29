@@ -72,8 +72,12 @@ class _ProfileViewState extends State<ProfileView> with _ProfileMixin {
         return _ProfileInfo(
           profileImage: user.profile?.profileImage,
           fullName: user.profile?.fullName,
-          followers: user.profile?.followers,
-          following: user.profile?.following,
+          followers: state.profileState is ProfileViewContentStateLoaded
+              ? (state.profileState as ProfileViewContentStateLoaded).followers
+              : 0,
+          following: state.profileState is ProfileViewContentStateLoaded
+              ? (state.profileState as ProfileViewContentStateLoaded).following
+              : 0,
           posts: state.postsState is ProfileViewPostStateLoaded
               ? (state.postsState as ProfileViewPostStateLoaded).posts?.length
               : null,
