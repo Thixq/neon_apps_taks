@@ -8,7 +8,7 @@ final class PopulatedCommentModel extends FirebaseCommentModel {
     this.profile,
     super.userId,
     super.comment,
-    super.commentedAt,
+    super.createdAt,
   });
 
   /// Creates a mock populated comment model.
@@ -16,7 +16,7 @@ final class PopulatedCommentModel extends FirebaseCommentModel {
     id: 'commentId',
     profile: ProfileModel.mock(),
     comment: 'This is a sample comment.',
-    commentedAt: DateTime.now(),
+    createdAt: DateTime.now(),
   );
 
   /// The profile data for the user who made the comment.

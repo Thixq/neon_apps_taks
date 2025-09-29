@@ -27,7 +27,7 @@ final class CommentManager {
 
       final newComment = comment.copyWith(
         id: commentRef.id,
-        commentedAt: DateTime.now(),
+        createdAt: DateTime.now(),
       );
 
       final batch = _firestore.batch()

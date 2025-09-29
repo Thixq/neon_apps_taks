@@ -26,7 +26,7 @@ extension FirebaseCommentModelX on FirebaseCommentModel {
       id: id,
       profile: profile,
       comment: comment,
-      commentedAt: commentedAt,
+      createdAt: createdAt,
     );
   }
 }

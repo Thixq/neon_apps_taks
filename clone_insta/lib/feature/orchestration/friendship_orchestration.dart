@@ -10,7 +10,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 /// and provides convenient methods to toggle follow/block actions.
 final class FriendshipOrchestration {
   /// Constructor
-  FriendshipOrchestration({
+  const FriendshipOrchestration({
     required UsersManager usersManager,
     required RelationshipManager relationshipManager,
   }) : _usersManager = usersManager,
@@ -36,8 +36,11 @@ final class FriendshipOrchestration {
         startAfter: startAfter,
       );
 
+      // 🔥 filter out current user
+      final filteredUsers = users.where((u) => u.id != currentUserId).toList();
+
       // 2) Fetch relationship status for each user in parallel
-      final futures = users.map((u) async {
+      final futures = filteredUsers.map((u) async {
         final (follow, block) = await _relManager.getRelationshipStatus(
           currentUserId,
           u.id,

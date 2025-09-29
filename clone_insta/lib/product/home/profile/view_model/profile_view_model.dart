@@ -6,7 +6,9 @@ import 'package:clone_insta/product/home/profile/view_model/profile_view_state.d
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// The profile view model
 final class ProfileViewModel extends Cubit<ProfileViewState> {
+  /// Constructor
   ProfileViewModel({
     required ProfileManager profileManager,
     required PostManager postManager,

@@ -8,7 +8,7 @@ final class FirebaseCommentModel extends BaseModel<FirebaseCommentModel> {
   const FirebaseCommentModel({
     required super.id,
     this.comment,
-    this.commentedAt,
+    this.createdAt,
     this.userId,
   });
 
@@ -16,7 +16,7 @@ final class FirebaseCommentModel extends BaseModel<FirebaseCommentModel> {
   factory FirebaseCommentModel.mock() => FirebaseCommentModel(
     id: '1',
     comment: 'Great post!',
-    commentedAt: DateTime.now(),
+    createdAt: DateTime.now(),
     userId: 'user_1',
   );
 
@@ -29,7 +29,7 @@ final class FirebaseCommentModel extends BaseModel<FirebaseCommentModel> {
 
   /// The date and time when the comment was made.
   @TimestampNullableConverter()
-  final DateTime? commentedAt;
+  final DateTime? createdAt;
 
   /// The ID of the user who made the comment.
   final String? userId;
@@ -47,7 +47,7 @@ final class FirebaseCommentModel extends BaseModel<FirebaseCommentModel> {
   List<Object?> get props => [
     id,
     comment,
-    commentedAt,
+    createdAt,
     userId,
   ];
 
@@ -57,13 +57,13 @@ final class FirebaseCommentModel extends BaseModel<FirebaseCommentModel> {
   FirebaseCommentModel copyWith({
     String? id,
     String? comment,
-    DateTime? commentedAt,
+    DateTime? createdAt,
     String? userId,
   }) {
     return FirebaseCommentModel(
       id: id ?? this.id,
       comment: comment ?? this.comment,
-      commentedAt: commentedAt ?? this.commentedAt,
+      createdAt: createdAt ?? createdAt,
       userId: userId ?? this.userId,
     );
   }

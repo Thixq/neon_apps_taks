@@ -13,12 +13,7 @@ final class UsersManager {
     required int pageSize,
     DocumentSnapshot? startAfter,
   }) async {
-    Query query = _firestore
-        .collection(EndPointConstant.users)
-        .orderBy(
-          EndPointConstant.createdAt,
-        )
-        .limit(pageSize);
+    Query query = _firestore.collection(EndPointConstant.users).limit(pageSize);
     if (startAfter != null) query = query.startAfterDocument(startAfter);
     final snapshot = await query
         .withConverter(

@@ -11,12 +11,14 @@ class _FriendshipListTile extends StatefulWidget {
     this.userName,
     this.userImageUrl,
     this.userId,
+    this.followStatus,
   });
 
-  final VoidCallback? onFollow;
+  final ValueChanged<String>? onFollow;
   final String? userName;
   final String? userImageUrl;
   final String? userId;
+  final FollowStatus? followStatus;
 
   @override
   State<_FriendshipListTile> createState() => _FriendshipListTileState();
@@ -33,8 +35,16 @@ class _FriendshipListTileState extends State<_FriendshipListTile> {
       title: Text('${widget.userName}'),
 
       trailing: FilledButton.tonal(
-        onPressed: widget.onFollow,
-        child: const Text('Follow'),
+        onPressed: (widget.followStatus == FollowStatus.active)
+            ? null
+            : () => widget.onFollow?.call(widget.userId ?? ''),
+        child: Text(
+          widget.followStatus == FollowStatus.none
+              ? _follow
+              : widget.followStatus == FollowStatus.pending
+              ? _pending
+              : _followed,
+        ),
       ),
     );
   }

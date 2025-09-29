@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clone_insta/feature/app_logger.dart';
 import 'package:clone_insta/feature/managers/post_manager.dart';
 import 'package:clone_insta/feature/managers/profile_manager.dart';
 import 'package:clone_insta/feature/models/post_model/post_models.dart';
@@ -72,9 +73,13 @@ class CreatePostViewModel extends Cubit<CreatePostState> {
       final url = await ref
           .getDownloadURL(); // Burada result.ref yerine ref kullan
       return url;
-    } on FirebaseException catch (e) {
+    } on FirebaseException catch (e, st) {
       // log at
-      print('🔥 Upload failed: ${e.code} - ${e.message}');
+      AppLogger.error(
+        e,
+        st,
+        reason: '🔥 Upload failed: ${e.code} - ${e.message}',
+      );
       return null;
     }
   }

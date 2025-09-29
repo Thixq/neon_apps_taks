@@ -4,7 +4,7 @@ part of 'comment_bottom_sheet.dart';
 
 mixin _CommentBottomSheetMixin on State<CommentBottomSheet> {
   late final TextEditingController controller;
-  late List<PopulatedCommentModel> localComments;
+  List<PopulatedCommentModel> localComments = [];
 
   @override
   void initState() {
@@ -58,7 +58,7 @@ mixin _CommentBottomSheetMixin on State<CommentBottomSheet> {
           userId: widget.profile?.id,
           profile: widget.profile,
           comment: value,
-          commentedAt: DateTime.now(),
+          createdAt: DateTime.now(),
         );
 
         AppLogger.log(

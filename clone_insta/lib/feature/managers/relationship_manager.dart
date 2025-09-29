@@ -31,6 +31,7 @@ final class RelationshipManager {
 
         if (!relDoc.exists) {
           txn.set(relationshipRef, {
+            'id': docId, // ✅ relationship ID field
             'users': [currentUserId, targetUserId]..sort(),
             'createdAt': FieldValue.serverTimestamp(),
             'updatedAt': FieldValue.serverTimestamp(),
@@ -46,6 +47,7 @@ final class RelationshipManager {
           ..set(
             relationshipRef.collection('sides').doc(currentUserId),
             {
+              'id': currentUserId, // ✅ side ID field
               'followStatus': FollowStatus.active.name,
               'updatedAt': FieldValue.serverTimestamp(),
               'muted': false,
@@ -89,16 +91,18 @@ final class RelationshipManager {
           .doc(docId);
 
       await _firestore.runTransaction((txn) async {
+        txn.set(
+          relationshipRef.collection('sides').doc(currentUserId),
+          {
+            'id': currentUserId, // ✅ side ID field
+            'followStatus': FollowStatus.none.name,
+            'updatedAt': FieldValue.serverTimestamp(),
+          },
+          SetOptions(merge: true),
+        );
+
+        // Clear seed cache
         txn
-          ..set(
-            relationshipRef.collection('sides').doc(currentUserId),
-            {
-              'followStatus': FollowStatus.none.name,
-              'updatedAt': FieldValue.serverTimestamp(),
-            },
-            SetOptions(merge: true),
-          )
-          // Clear seed cache
           ..delete(
             _firestore
                 .collection(EndPointConstant.users)
@@ -133,6 +137,7 @@ final class RelationshipManager {
 
       await relationshipRef.collection('sides').doc(currentUserId).set(
         {
+          'id': currentUserId, // ✅ side ID field
           'blocked': BlockStatus.blocked.name,
           'updatedAt': FieldValue.serverTimestamp(),
         },
@@ -157,6 +162,7 @@ final class RelationshipManager {
 
       await relationshipRef.collection('sides').doc(currentUserId).set(
         {
+          'id': currentUserId, // ✅ side ID field
           'blocked': BlockStatus.none.name,
           'updatedAt': FieldValue.serverTimestamp(),
         },

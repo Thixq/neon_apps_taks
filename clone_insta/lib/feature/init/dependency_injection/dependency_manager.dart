@@ -3,7 +3,9 @@ import 'package:clone_insta/feature/managers/comment_manager.dart';
 import 'package:clone_insta/feature/managers/feed_manager.dart';
 import 'package:clone_insta/feature/managers/post_manager.dart';
 import 'package:clone_insta/feature/managers/profile_manager.dart';
+import 'package:clone_insta/feature/managers/relationship_manager.dart';
 import 'package:clone_insta/feature/managers/users_manager.dart';
+import 'package:clone_insta/feature/orchestration/friendship_orchestration.dart';
 import 'package:clone_insta/feature/services/image_picker_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -24,6 +26,7 @@ final class DependencyManager {
   Future<void> initialize() async {
     await _serviceConfigure();
     await _managerConfigure();
+    await _orchestrationConfigure();
     await _getIt.allReady();
   }
 
@@ -38,26 +41,31 @@ final class DependencyManager {
           return manager;
         },
       )
-      ..registerSingletonAsync<FeedManager>(
-        () async => FeedManager(firestore: _getIt.get<FirebaseFirestore>()),
-      )
-      ..registerSingletonAsync<PostManager>(
-        () async => PostManager(firestore: _getIt.get<FirebaseFirestore>()),
-      )
-      ..registerSingletonAsync<CommentManager>(
-        () async => CommentManager(
-          firestore: _getIt.get<FirebaseFirestore>(),
-        ),
-      )
-      ..registerSingletonAsync<UsersManager>(
-        () async => UsersManager(firestore: _getIt.get<FirebaseFirestore>()),
-      )
       ..registerSingletonAsync<CloneInstaConfig>(
         () async {
           final config = CloneInstaConfig.instance;
           await config.initialize();
           return config;
         },
+      )
+      ..registerSingleton<FeedManager>(
+        FeedManager(firestore: _getIt.get<FirebaseFirestore>()),
+      )
+      ..registerSingleton<PostManager>(
+        PostManager(firestore: _getIt.get<FirebaseFirestore>()),
+      )
+      ..registerSingleton<CommentManager>(
+        CommentManager(
+          firestore: _getIt.get<FirebaseFirestore>(),
+        ),
+      )
+      ..registerSingleton<UsersManager>(
+        UsersManager(firestore: _getIt.get<FirebaseFirestore>()),
+      )
+      ..registerSingleton<RelationshipManager>(
+        RelationshipManager(
+          firestore: _getIt.get<FirebaseFirestore>(),
+        ),
       );
   }
 
@@ -69,6 +77,15 @@ final class DependencyManager {
       ..registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance)
       ..registerSingleton<FirebaseAuth>(FirebaseAuth.instance)
       ..registerSingleton<FirebaseStorage>(FirebaseStorage.instance);
+  }
+
+  Future<void> _orchestrationConfigure() async {
+    _getIt.registerSingleton<FriendshipOrchestration>(
+      FriendshipOrchestration(
+        usersManager: _getIt.get<UsersManager>(),
+        relationshipManager: _getIt.get<RelationshipManager>(),
+      ),
+    );
   }
 
   /// Get dependency

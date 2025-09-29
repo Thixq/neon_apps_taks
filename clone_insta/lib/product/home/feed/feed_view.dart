@@ -36,6 +36,7 @@ class _FeedViewState extends State<FeedView> with _FeedMixin {
     return Scaffold(
       appBar: _FeedAppBar(
         addPostPressed: _navigateToCreatePost,
+        currentUserId: _profileManager.profile!.id,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppSizes.small),

@@ -11,8 +11,8 @@ FirebaseCommentModel _$FirebaseCommentModelFromJson(
 ) => FirebaseCommentModel(
   id: json['id'] as String,
   comment: json['comment'] as String?,
-  commentedAt: const TimestampNullableConverter().fromJson(
-    json['commentedAt'] as Timestamp?,
+  createdAt: const TimestampNullableConverter().fromJson(
+    json['createdAt'] as Timestamp?,
   ),
   userId: json['userId'] as String?,
 );
@@ -22,8 +22,6 @@ Map<String, dynamic> _$FirebaseCommentModelToJson(
 ) => <String, dynamic>{
   'id': instance.id,
   'comment': instance.comment,
-  'commentedAt': const TimestampNullableConverter().toJson(
-    instance.commentedAt,
-  ),
+  'createdAt': const TimestampNullableConverter().toJson(instance.createdAt),
   'userId': instance.userId,
 };

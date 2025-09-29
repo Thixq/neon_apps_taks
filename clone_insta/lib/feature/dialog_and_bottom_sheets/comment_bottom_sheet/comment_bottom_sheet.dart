@@ -37,6 +37,7 @@ class CommentBottomSheet extends StatefulWidget {
   }) async {
     await showModalBottomSheet<void>(
       context: context,
+      showDragHandle: true,
       builder: (context) {
         return CommentBottomSheet._(
           postId: postId,
@@ -87,7 +88,7 @@ class _CommentBottomSheetState extends State<CommentBottomSheet>
                     overflow: TextOverflow.ellipsis,
                   ),
                   trailing: Text(
-                    '${comment.commentedAt?.toRelativeString()}',
+                    '${comment.createdAt?.toRelativeString()}',
                   ),
                 );
               },

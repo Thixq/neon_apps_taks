@@ -1,6 +1,7 @@
 import 'package:clone_insta/feature/app_logger.dart';
 import 'package:clone_insta/feature/constants/end_point_constant.dart';
 import 'package:clone_insta/feature/models/post_model/post_models.dart';
+import 'package:clone_insta/feature/utils/enums/relationship_enums.dart';
 import 'package:clone_insta/feature/utils/extension/extension_populated.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -48,22 +49,29 @@ final class FeedManager {
   Future<List<String>> _fetchFollowingIds(String userId) async {
     try {
       AppLogger.log('👥 Fetching following IDs for user: $userId');
-
       final snapshot = await _firestore
-          .collection(EndPointConstant.relationships)
-          .where(
-            '${EndPointConstant.sides}.$userId.${EndPointConstant.followStatus}',
-            isEqualTo: 'active',
-          )
+          .collectionGroup(EndPointConstant.sides)
+          .where('id', isEqualTo: userId)
+          .where('followStatus', isEqualTo: 'active')
           .get();
-
       final ids = <String>[];
 
       for (final doc in snapshot.docs) {
-        final sides = doc['sides'] as Map<String, dynamic>;
-        for (final entry in sides.entries) {
-          if (entry.key != userId) {
-            ids.add(entry.key);
+        if (doc.id == userId) {
+          final relationshipDocRef = doc.reference.parent.parent;
+
+          if (relationshipDocRef != null) {
+            final relationshipSnap = await relationshipDocRef.get();
+            final users = List<String>.from(
+              relationshipSnap['users'] as List<dynamic>,
+            );
+
+            // ilişki dokümanındaki diğer userId'yi bul
+            for (final id in users) {
+              if (id != userId) {
+                ids.add(id);
+              }
+            }
           }
         }
       }

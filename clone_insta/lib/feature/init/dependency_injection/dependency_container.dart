@@ -5,6 +5,7 @@ import 'package:clone_insta/feature/managers/feed_manager.dart';
 import 'package:clone_insta/feature/managers/post_manager.dart';
 import 'package:clone_insta/feature/managers/profile_manager.dart';
 import 'package:clone_insta/feature/managers/users_manager.dart';
+import 'package:clone_insta/feature/orchestration/friendship_orchestration.dart';
 import 'package:clone_insta/feature/services/image_picker_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,13 +15,17 @@ import 'package:firebase_storage/firebase_storage.dart';
 final class DependencyContainer {
   DependencyContainer._();
 
+  /// Services
+  static DependencyContainerService get service =>
+      DependencyContainerService._();
+
   /// Managers
   static DependencyContainerManager get manager =>
       DependencyContainerManager._();
 
-  /// Services
-  static DependencyContainerService get service =>
-      DependencyContainerService._();
+  /// Orchestration
+  static DependencyContainerOrchestration get orchestration =>
+      DependencyContainerOrchestration._();
 }
 
 /// Dependency container service
@@ -66,4 +71,13 @@ final class DependencyContainerManager {
   /// FirebaseRemoteConfig
   final CloneInstaConfig firebaseRemoteConfig =
       DependencyManager.read<CloneInstaConfig>();
+}
+
+/// Dependency container orchestration
+final class DependencyContainerOrchestration {
+  DependencyContainerOrchestration._();
+
+  /// FriendshipOrchestration
+  final FriendshipOrchestration friendshipOrchestration =
+      DependencyManager.read<FriendshipOrchestration>();
 }
