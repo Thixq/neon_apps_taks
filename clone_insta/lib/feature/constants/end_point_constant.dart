@@ -2,6 +2,8 @@
 final class EndPointConstant {
   const EndPointConstant._();
 
+  // --- collections ---
+
   ///  users collection
   static const String users = 'users';
 
@@ -26,6 +28,9 @@ final class EndPointConstant {
 
   ///  posts collection
   static const String posts = 'posts';
+
+  /// devices fcm token collection
+  static const String devices = 'devices';
 
   // --- query parameters ---
 

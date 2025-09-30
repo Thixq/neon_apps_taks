@@ -18,6 +18,8 @@ dependencies:
   firebase_auth: ^6.0.2
   firebase_remote_config: ^6.0.1
   firebase_crashlytics: ^5.0.1
+  firebase_messaging: ^16.0.2
+  cloud_functions: ^6.0.2
 
   #State Management
   bloc: ^9.0.0
@@ -31,6 +33,11 @@ dependencies:
   hl_image_picker_ios: ^1.2.10
   get_it: ^8.2.0
   uuid: ^4.5.1
+  path_provider: ^2.1.5
+  image_gallery_saver: ^2.0.3
+  permission_handler: ^12.0.1
+  device_info_plus: ^12.1.0
+  crypto: ^3.0.6
 
   #Routing
   auto_route: ^10.1.2

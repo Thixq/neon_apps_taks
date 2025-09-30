@@ -59,7 +59,10 @@ final class ProfileViewContentStateLoaded extends ProfileViewContentState {
     required this.following,
   });
 
+  /// followers
   final int followers;
+
+  ///  following
   final int following;
 
   @override

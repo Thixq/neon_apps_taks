@@ -1,6 +1,7 @@
 import 'package:clone_insta/feature/init/firebase_remote_config.dart';
 import 'package:clone_insta/feature/managers/comment_manager.dart';
 import 'package:clone_insta/feature/managers/feed_manager.dart';
+import 'package:clone_insta/feature/managers/file_manager.dart';
 import 'package:clone_insta/feature/managers/post_manager.dart';
 import 'package:clone_insta/feature/managers/profile_manager.dart';
 import 'package:clone_insta/feature/managers/relationship_manager.dart';
@@ -66,6 +67,9 @@ final class DependencyManager {
         RelationshipManager(
           firestore: _getIt.get<FirebaseFirestore>(),
         ),
+      )
+      ..registerSingleton<FileManager>(
+        FileManager(firebaseStorage: _getIt.get<FirebaseStorage>()),
       );
   }
 

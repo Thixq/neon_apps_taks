@@ -4,6 +4,7 @@ mixin _SplashMixin on State<SplashView> {
   @override
   void initState() {
     _routing();
+
     super.initState();
   }
 

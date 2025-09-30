@@ -11,6 +11,7 @@ import 'package:clone_insta/feature/models/profile_model.dart';
 import 'package:clone_insta/feature/routing/app_router.gr.dart';
 import 'package:clone_insta/product/home/feed/feed_view_model/feed_state.dart';
 import 'package:clone_insta/product/home/feed/feed_view_model/feed_view_model.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
@@ -34,6 +35,7 @@ class _FeedViewState extends State<FeedView> with _FeedMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: _buildTestNotification(),
       appBar: _FeedAppBar(
         addPostPressed: _navigateToCreatePost,
         currentUserId: _profileManager.profile!.id,
@@ -58,6 +60,17 @@ class _FeedViewState extends State<FeedView> with _FeedMixin {
           },
         ),
       ),
+    );
+  }
+
+  FloatingActionButton _buildTestNotification() {
+    return FloatingActionButton(
+      onPressed: () async {
+        await FirebaseMessaging.instance.requestPermission();
+        final token = await FirebaseMessaging.instance.getToken();
+        debugPrint('FCM TOKEN: $token');
+      },
+      child: const Icon(Icons.notifications_active),
     );
   }
 }
