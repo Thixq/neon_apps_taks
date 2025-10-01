@@ -1,3 +1,5 @@
+// ignore_for_file: inference_failure_on_function_invocation, document_ignores
+
 import 'package:auto_route/auto_route.dart';
 import 'package:clone_insta/feature/components/post_card/post_card.dart';
 import 'package:clone_insta/feature/constants/app_sizes.dart';
@@ -11,7 +13,7 @@ import 'package:clone_insta/feature/models/profile_model.dart';
 import 'package:clone_insta/feature/routing/app_router.gr.dart';
 import 'package:clone_insta/product/home/feed/feed_view_model/feed_state.dart';
 import 'package:clone_insta/product/home/feed/feed_view_model/feed_view_model.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
@@ -66,9 +68,20 @@ class _FeedViewState extends State<FeedView> with _FeedMixin {
   FloatingActionButton _buildTestNotification() {
     return FloatingActionButton(
       onPressed: () async {
-        await FirebaseMessaging.instance.requestPermission();
-        final token = await FirebaseMessaging.instance.getToken();
-        debugPrint('FCM TOKEN: $token');
+        final token = await DependencyContainer
+            .manager
+            .notificationTokenManager
+            .getFCMToken;
+        final response = await FirebaseFunctions.instance
+            .httpsCallable(
+              'sendNotification',
+            )
+            .call({
+              'token': token,
+              'title': 'Test Notification',
+              'subtitle': 'This is a test notification',
+            });
+        debugPrint(response.data.toString());
       },
       child: const Icon(Icons.notifications_active),
     );
