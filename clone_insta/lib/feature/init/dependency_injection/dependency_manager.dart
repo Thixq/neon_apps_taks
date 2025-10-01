@@ -2,6 +2,8 @@ import 'package:clone_insta/feature/init/firebase_remote_config.dart';
 import 'package:clone_insta/feature/managers/comment_manager.dart';
 import 'package:clone_insta/feature/managers/feed_manager.dart';
 import 'package:clone_insta/feature/managers/file_manager.dart';
+import 'package:clone_insta/feature/managers/notification_manager.dart';
+import 'package:clone_insta/feature/managers/notification_token_manager.dart';
 import 'package:clone_insta/feature/managers/post_manager.dart';
 import 'package:clone_insta/feature/managers/profile_manager.dart';
 import 'package:clone_insta/feature/managers/relationship_manager.dart';
@@ -68,6 +70,15 @@ final class DependencyManager {
           firestore: _getIt.get<FirebaseFirestore>(),
         ),
       )
+      ..registerSingletonAsync<NotificationTokenManager>(
+        () async => NotificationTokenManager.instance,
+        dependsOn: [ProfileManager],
+      )
+      ..registerSingletonAsync<FCMManager>(() async {
+        final fmcManager = FCMManager.instance;
+        await fmcManager.init();
+        return fmcManager;
+      })
       ..registerSingleton<FileManager>(
         FileManager(firebaseStorage: _getIt.get<FirebaseStorage>()),
       );

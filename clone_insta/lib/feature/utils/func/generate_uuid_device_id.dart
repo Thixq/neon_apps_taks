@@ -3,7 +3,11 @@ import 'dart:io';
 import 'package:crypto/crypto.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
-class GenerateUuidDeviceId {
+/// Generate Device ID
+final class GenerateUuidDeviceId {
+  const GenerateUuidDeviceId._();
+
+  /// Generate Device ID
   static Future<String> generateDeviceId() async {
     final deviceInfo = DeviceInfoPlugin();
 

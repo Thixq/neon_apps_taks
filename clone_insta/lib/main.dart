@@ -15,6 +15,7 @@ void main() async {
   final themeColor =
       DependencyContainer.manager.firebaseRemoteConfig.themeColor;
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  await DependencyContainer.manager.notificationTokenManager.deviceSync();
   PlatformDispatcher.instance.onError = (error, stack) {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;

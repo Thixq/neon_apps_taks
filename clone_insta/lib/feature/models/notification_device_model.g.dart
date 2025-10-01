@@ -10,7 +10,7 @@ NotificationDeviceModel _$NotificationDeviceModelFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate('NotificationDeviceModel', json, ($checkedConvert) {
   final val = NotificationDeviceModel(
-    id: $checkedConvert('id', (v) => v as String),
+    id: $checkedConvert('id', (v) => v! as String),
     userId: $checkedConvert('userId', (v) => v as String?),
     fcmToken: $checkedConvert('fcmToken', (v) => v as String?),
     platform: $checkedConvert('platform', (v) => v as String?),

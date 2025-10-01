@@ -3,6 +3,8 @@ import 'package:clone_insta/feature/init/firebase_remote_config.dart';
 import 'package:clone_insta/feature/managers/comment_manager.dart';
 import 'package:clone_insta/feature/managers/feed_manager.dart';
 import 'package:clone_insta/feature/managers/file_manager.dart';
+import 'package:clone_insta/feature/managers/notification_manager.dart';
+import 'package:clone_insta/feature/managers/notification_token_manager.dart';
 import 'package:clone_insta/feature/managers/post_manager.dart';
 import 'package:clone_insta/feature/managers/profile_manager.dart';
 import 'package:clone_insta/feature/managers/relationship_manager.dart';
@@ -35,17 +37,17 @@ final class DependencyContainerService {
   DependencyContainerService._();
 
   /// auth
-  final FirebaseAuth auth = DependencyManager.read<FirebaseAuth>();
+  FirebaseAuth get auth => DependencyManager.read<FirebaseAuth>();
 
   /// firestore
-  final FirebaseFirestore firestore =
+  FirebaseFirestore get firestore =>
       DependencyManager.read<FirebaseFirestore>();
 
   /// storage
-  final FirebaseStorage storage = DependencyManager.read<FirebaseStorage>();
+  FirebaseStorage get storage => DependencyManager.read<FirebaseStorage>();
 
   /// image picker
-  final ImagePickerService imagePicker =
+  ImagePickerService get imagePickerService =>
       DependencyManager.read<ImagePickerService>();
 }
 
@@ -54,31 +56,36 @@ final class DependencyContainerManager {
   DependencyContainerManager._();
 
   /// ProfileManager
-  final ProfileManager profileManager =
-      DependencyManager.read<ProfileManager>();
+  ProfileManager get profileManager => DependencyManager.read<ProfileManager>();
 
   /// FeedManager
-  final FeedManager feedManager = DependencyManager.read<FeedManager>();
+  FeedManager get feedManager => DependencyManager.read<FeedManager>();
 
   /// PostManager
-  final PostManager postManager = DependencyManager.read<PostManager>();
+  PostManager get postManager => DependencyManager.read<PostManager>();
 
   /// CommentManager
-  final CommentManager commentManager =
-      DependencyManager.read<CommentManager>();
+  CommentManager get commentManager => DependencyManager.read<CommentManager>();
 
   /// UsersManager
-  final UsersManager usersManager = DependencyManager.read<UsersManager>();
+  UsersManager get usersManager => DependencyManager.read<UsersManager>();
 
   /// FirebaseRemoteConfig
-  final CloneInstaConfig firebaseRemoteConfig =
+  CloneInstaConfig get firebaseRemoteConfig =>
       DependencyManager.read<CloneInstaConfig>();
 
   /// FileManager
-  final FileManager fileManager = DependencyManager.read<FileManager>();
+  FileManager get fileManager => DependencyManager.read<FileManager>();
+
+  /// NotificationTokenManager
+  NotificationTokenManager get notificationTokenManager =>
+      DependencyManager.read<NotificationTokenManager>();
+
+  /// NotificationManager
+  FCMManager get fcmManager => DependencyManager.read<FCMManager>();
 
   /// RelationshipManager
-  final RelationshipManager relationshipManager =
+  RelationshipManager get relationshipManager =>
       DependencyManager.read<RelationshipManager>();
 }
 
@@ -87,6 +94,6 @@ final class DependencyContainerOrchestration {
   DependencyContainerOrchestration._();
 
   /// FriendshipOrchestration
-  final FriendshipOrchestration friendshipOrchestration =
+  FriendshipOrchestration get friendshipOrchestration =>
       DependencyManager.read<FriendshipOrchestration>();
 }

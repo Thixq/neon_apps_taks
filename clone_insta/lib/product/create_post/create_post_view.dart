@@ -30,7 +30,7 @@ class _CreatePostViewState extends State<CreatePostView>
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => CreatePostViewModel(
-        imagePickerService: DependencyContainer.service.imagePicker,
+        imagePickerService: DependencyContainer.service.imagePickerService,
         postManager: DependencyContainer.manager.postManager,
         profileManager: DependencyContainer.manager.profileManager,
         storageService: DependencyContainer.service.storage,

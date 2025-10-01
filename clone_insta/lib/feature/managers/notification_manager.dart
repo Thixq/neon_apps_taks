@@ -1,3 +1,4 @@
+import 'package:clone_insta/feature/app_logger.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 /// A service for handling FCM (Firebase Cloud Messaging) notifications.
@@ -6,9 +7,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 /// - Requesting permissions (iOS)
 /// - Managing FCM token
 /// - Listening to foreground, background, and terminated messages
-final class FCMService {
-  FCMService._();
-  static final FCMService instance = FCMService._();
+final class FCMManager {
+  FCMManager._();
+
+  /// Singleton instance.
+  static final FCMManager instance = FCMManager._();
 
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;
 
@@ -45,23 +48,12 @@ final class FCMService {
 
   /// Handles received messages (common entry point).
   void _handleMessage(RemoteMessage message) {
-    // TODO: Add your own logic here (e.g., navigation, logging, etc.)
     final data = message.data;
     final notification = message.notification;
-    print('📩 FCM Message received!');
-    print('Data: $data');
+    AppLogger.log('📩 FCM Message received!');
+    AppLogger.log('Data: $data');
     if (notification != null) {
-      print('Title: ${notification.title}, Body: ${notification.body}');
+      AppLogger.log('Title: ${notification.title}, Body: ${notification.body}');
     }
-  }
-
-  /// Retrieves current FCM token.
-  Future<String?> getToken() async {
-    return _messaging.getToken();
-  }
-
-  /// Listen to token refresh events.
-  void onTokenRefresh(void Function(String token) callback) {
-    _messaging.onTokenRefresh.listen(callback);
   }
 }
