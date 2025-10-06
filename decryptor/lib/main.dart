@@ -1,4 +1,4 @@
-import 'package:decryptor/home.dart';
+import 'package:decryptor/home_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +11,7 @@ class _App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      home: HomeView(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.tealAccent),
       ),

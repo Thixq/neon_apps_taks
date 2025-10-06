@@ -21,6 +21,7 @@ class PostsPage extends StatelessWidget {
   Future<List<dynamic>> fetchPosts() async {
     final response = await http.get(
       Uri.parse("https://jsonplaceholder.typicode.com/posts"),
+      headers: {"Content-Type": "application/json"},
     );
 
     if (response.statusCode == 200) {

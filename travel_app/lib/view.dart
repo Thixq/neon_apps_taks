@@ -68,8 +68,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   TextField _buildTextField() => TextField(
-    onSubmitted: (value) => setState(() {
+    onSubmitted: (value) {
+      print(value);
       SharedPrefHelper.setString('location', value);
-    }),
+      setState(() {});
+    },
   );
 }

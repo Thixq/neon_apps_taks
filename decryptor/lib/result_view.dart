@@ -1,14 +1,14 @@
 import 'package:decryptor/notification_center.dart';
 import 'package:flutter/material.dart';
 
-class Result extends StatefulWidget {
-  const Result({super.key});
+class ResultView extends StatefulWidget {
+  const ResultView({super.key});
 
   @override
-  State<Result> createState() => _ResultState();
+  State<ResultView> createState() => _ResultViewState();
 }
 
-class _ResultState extends State<Result> {
+class _ResultViewState extends State<ResultView> {
   late final NotificationCenter notification;
   @override
   void initState() {

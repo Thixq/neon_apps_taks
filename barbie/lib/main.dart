@@ -28,6 +28,7 @@ class BarbieKenPage extends StatelessWidget {
   Future<List<dynamic>> fetchPosts() async {
     final response = await http.get(
       Uri.parse("https://jsonplaceholder.typicode.com/posts"),
+      headers: {"Content-type": "application/json"},
     );
 
     if (response.statusCode == 200) {

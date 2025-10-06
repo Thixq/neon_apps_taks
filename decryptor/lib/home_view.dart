@@ -1,17 +1,17 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:decryptor/dialog.dart';
-import 'package:decryptor/result.dart';
+import 'package:decryptor/result_view.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,7 @@ class _HomeState extends State<Home> {
               if (mounted) {
                 await Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => Result()),
+                  MaterialPageRoute(builder: (context) => ResultView()),
                 );
               }
             }

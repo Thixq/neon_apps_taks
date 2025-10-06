@@ -29,49 +29,28 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  const Icon(
-                    Icons.account_balance_wallet,
-                    size: 60,
-                    color: Colors.indigo,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    "Hoş geldin, Sarah!",
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            _buildTitle(context),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  elevation: 3,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      spacing: 8,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Hesap Özeti",
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        const SizedBox(height: 8),
-                        _accountRow("Ana Hesap", "₺12.500"),
-                        _accountRow("Yatırım Hesabı", "₺8.300"),
-                        _accountRow("Birikim Hesabı", "₺3.750"),
-                      ],
-                    ),
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                elevation: 3,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    spacing: 8,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Hesap Özeti",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: 8),
+                      _accountRow("Ana Hesap", "₺12.500"),
+                      _accountRow("Yatırım Hesabı", "₺8.300"),
+                      _accountRow("Birikim Hesabı", "₺3.750"),
+                    ],
                   ),
                 ),
               ),
@@ -118,6 +97,28 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Padding _buildTitle(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          const Icon(
+            Icons.account_balance_wallet,
+            size: 60,
+            color: Colors.indigo,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            "Hoş geldin, Sarah!",
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     );
   }

@@ -8,6 +8,7 @@ class LoggerInterceptor extends Interceptor {
     debugPrint("🚀 [REQUEST] => ${options.method} ${options.uri}");
     debugPrint("Headers: ${options.headers}");
     debugPrint("Data: ${options.data}");
+    options.headers = {"Content-Type": "application/json"};
     super.onRequest(options, handler);
   }
 
